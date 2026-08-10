@@ -270,6 +270,23 @@ button {
   cursor: not-allowed;
 }
 
+/* .nav__toggle et .btn fixent leur propre cursor: pointer/not-allowed, ce qui
+   l'emporte sur le cursor: none hérité de <html> (posé par cat-cursor.js) —
+   sans ce bloc, le curseur natif (main) réapparaît par-dessus le curseur
+   patte personnalisé sur tous les boutons. hover: hover exclut le tactile,
+   où cat-cursor.js ne s'exécute de toute façon jamais. */
+@media (hover: hover) {
+  .nav__toggle,
+  .btn {
+    cursor: none;
+  }
+
+  .btn--disabled,
+  .btn[aria-disabled='true'] {
+    cursor: none;
+  }
+}
+
 /* ---------- Sections ---------- */
 
 section {

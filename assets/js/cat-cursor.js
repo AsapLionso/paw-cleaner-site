@@ -14,6 +14,17 @@
   var CURSOR_SIZE = 32; // hauteur en px — icône plate simple, pas besoin du gabarit 44px de l'ancienne photo
   var HOVER_SCALE = 1.25;
   var LERP_AMOUNT = 0.18;
+  // Incline la patte comme la pointe d'une flèche de curseur classique
+  // (négatif = sens antihoraire, penche le haut de l'icône vers la gauche).
+  var CURSOR_ROTATION_DEG = -20;
+  // Filtre par défaut vs. survol d'une zone cliquable (data-magnetic) : la
+  // patte crème devient noire au survol — brightness(0) fonctionne quelle
+  // que soit la couleur source du SVG, pas besoin d'un second fichier. Les
+  // deux drop-shadow blancs (au lieu du drop-shadow noir habituel) évitent
+  // que la patte devienne invisible sur un bouton déjà sombre.
+  var DEFAULT_FILTER = 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45))';
+  var HOVER_FILTER =
+    'brightness(0) drop-shadow(0 0 1px rgba(255, 255, 255, 0.8)) drop-shadow(0 1px 4px rgba(255, 255, 255, 0.35))';
 
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -35,9 +46,9 @@
   cursor.style.opacity = '0';
   // Ombre douce : garde la patte visible même sur les boutons clairs
   // (fond crème), sans recourir à mix-blend-mode/backdrop-filter.
-  cursor.style.filter = 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45))';
-  cursor.style.transitionProperty = 'transform, opacity';
-  cursor.style.transitionDuration = prefersReducedMotion ? '0s' : '0.2s, 0.2s';
+  cursor.style.filter = DEFAULT_FILTER;
+  cursor.style.transitionProperty = 'transform, opacity, filter';
+  cursor.style.transitionDuration = prefersReducedMotion ? '0s' : '0.2s, 0.2s, 0.15s';
   cursor.style.transitionTimingFunction = 'ease-out';
   document.body.appendChild(cursor);
 
@@ -47,7 +58,9 @@
 
   function render() {
     var scale = isHovering ? HOVER_SCALE : 1;
-    cursor.style.transform = 'translate(-50%, -50%) translate(' + pos.x + 'px, ' + pos.y + 'px) scale(' + scale + ')';
+    cursor.style.transform =
+      'translate(-50%, -50%) translate(' + pos.x + 'px, ' + pos.y + 'px) rotate(' + CURSOR_ROTATION_DEG + 'deg) scale(' + scale + ')';
+    cursor.style.filter = isHovering ? HOVER_FILTER : DEFAULT_FILTER;
   }
 
   window.addEventListener(
