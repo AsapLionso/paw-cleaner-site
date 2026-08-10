@@ -1,16 +1,17 @@
-// Curseur personnalisé — la mascotte chat (assets/img/mascot.webp) suit le
-// pointeur. Version volontairement simple : suivi en douceur (lerp) et
-// léger agrandissement au survol des éléments interactifs marqués
-// data-magnetic, rien d'autre. Une première version portait fidèlement le
-// squash/stretch selon la vitesse + le morphing de forme au survol d'un
-// composant GSAP fourni — jugée trop complexe et donnant un effet "ovale"
-// étrange au contact du texte (le rond s'étirait). Retirée entièrement au
-// profit de ce curseur simple. Desktop uniquement — désactivé sur tactile.
+// Curseur personnalisé — l'icône patte (assets/img/paw-cursor.svg, même
+// silhouette que IconPaw dans l'app RN) suit le pointeur. Version
+// volontairement simple : suivi en douceur (lerp) et léger agrandissement
+// au survol des éléments interactifs marqués data-magnetic, rien d'autre.
+// Une première version portait fidèlement le squash/stretch selon la
+// vitesse + le morphing de forme au survol d'un composant GSAP fourni —
+// jugée trop complexe et donnant un effet "ovale" étrange au contact du
+// texte (le rond s'étirait). Retirée entièrement au profit de ce curseur
+// simple. Desktop uniquement — désactivé sur tactile.
 (function () {
   var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   if (isTouchDevice) return;
 
-  var CURSOR_SIZE = 44; // hauteur en px, largeur dérivée du ratio réel de l'image
+  var CURSOR_SIZE = 32; // hauteur en px — icône plate simple, pas besoin du gabarit 44px de l'ancienne photo
   var HOVER_SCALE = 1.25;
   var LERP_AMOUNT = 0.18;
 
@@ -19,10 +20,10 @@
   document.documentElement.style.cursor = 'none';
 
   var cursor = document.createElement('img');
-  cursor.src = '/assets/img/mascot.webp';
+  cursor.src = '/assets/img/paw-cursor.svg';
   cursor.alt = '';
   cursor.setAttribute('aria-hidden', 'true');
-  cursor.className = 'cat-cursor';
+  cursor.className = 'paw-cursor';
   cursor.style.position = 'fixed';
   cursor.style.top = '0';
   cursor.style.left = '0';
@@ -32,7 +33,7 @@
   cursor.style.pointerEvents = 'none';
   cursor.style.willChange = 'transform';
   cursor.style.opacity = '0';
-  // Ombre douce : garde le chat visible même sur les boutons clairs
+  // Ombre douce : garde la patte visible même sur les boutons clairs
   // (fond crème), sans recourir à mix-blend-mode/backdrop-filter.
   cursor.style.filter = 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45))';
   cursor.style.transitionProperty = 'transform, opacity';
