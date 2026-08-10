@@ -28,7 +28,7 @@
 <div class="page">
   <header class="nav">
     <div class="container nav__inner">
-      <a href="/" class="nav__logo" aria-label="Paw Cleaner — accueil">
+      <a href="/" class="nav__logo" aria-label="Paw Cleaner — accueil" data-magnetic>
         <img src="/assets/img/logo.png" alt="Paw Cleaner">
       </a>
       <nav aria-label="Navigation principale">
@@ -40,7 +40,7 @@
         </ul>
       </nav>
       <!-- [APP_STORE_URL] : lien réel à brancher dès publication de l'app -->
-      <a href="#" class="btn btn--primary btn--sm nav__cta nav__cta--desktop" data-app-store-cta>Download</a>
+      <a href="#" class="btn btn--primary btn--sm nav__cta nav__cta--desktop" data-app-store-cta data-magnetic>Download</a>
       <button class="nav__toggle" aria-label="Ouvrir le menu" aria-expanded="false">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6H21M3 12H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
@@ -59,11 +59,11 @@
     <section class="hero">
       <div class="container hero__inner">
         <img src="/assets/img/logo.png" alt="" class="hero__logo" aria-hidden="true">
-        <h1>Your camera roll.<br>Finally clean.</h1>
+        <h1><span data-gradient-shimmer data-gradient-preset="sunrise">Your camera roll.<br>Finally clean.</span></h1>
         <p class="hero__sub">Clean up your photos and videos with a simple swipe.</p>
         <div class="hero__ctas">
           <!-- [APP_STORE_URL] : lien réel à brancher dès publication de l'app -->
-          <a href="#" class="btn btn--primary" data-app-store-cta>Download on the App Store</a>
+          <a href="#" class="btn btn--primary" data-app-store-cta data-magnetic>Download on the App Store</a>
           <a href="#how-it-works" class="hero__learn-more">Learn more
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -234,7 +234,7 @@
       <div class="container reveal">
         <div class="mid-cta__title">Ready to clean your camera roll?</div>
         <!-- [APP_STORE_URL] : lien réel à brancher dès publication de l'app -->
-        <a href="#" class="btn btn--primary" data-app-store-cta>Download Paw Cleaner</a>
+        <a href="#" class="btn btn--primary" data-app-store-cta data-magnetic>Download Paw Cleaner</a>
       </div>
     </section>
 
@@ -244,7 +244,7 @@
         <img src="/assets/img/mascot.webp" alt="" class="final-cta__mascot" aria-hidden="true">
         <h2 class="final-cta__title">Your camera roll<br>deserves a little cleanup.</h2>
         <!-- [APP_STORE_URL] : lien réel à brancher dès publication de l'app -->
-        <a href="#" class="btn btn--primary" data-app-store-cta>Download Paw Cleaner</a>
+        <a href="#" class="btn btn--primary" data-app-store-cta data-magnetic>Download Paw Cleaner</a>
       </div>
     </section>
   </main>
@@ -285,6 +285,8 @@
   </footer>
 </div>
 
+<script src="/assets/js/gradient-shimmer.js"></script>
+<script src="/assets/js/magnetic-cursor.js"></script>
 <script src="/assets/js/main.js"></script>
 </body>
 </html>
