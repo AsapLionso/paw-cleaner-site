@@ -13,7 +13,11 @@
 
   var CURSOR_SIZE = 32; // hauteur en px — icône plate simple, pas besoin du gabarit 44px de l'ancienne photo
   var HOVER_SCALE = 1.25;
-  var LERP_AMOUNT = 0.18;
+  // 0.4 plutôt que 0.18 : à 0.18 le curseur accusait un retard perceptible
+  // sur la souris (sensation de devoir "trop bouger" pour l'atteindre) —
+  // combiné à la transition CSS sur transform (retirée ci-dessous), le
+  // retard était doublé. Le lerp JS seul suffit à lisser le mouvement.
+  var LERP_AMOUNT = 0.4;
   // Incline la patte comme la pointe d'une flèche de curseur classique
   // (négatif = sens antihoraire, penche le haut de l'icône vers la gauche).
   var CURSOR_ROTATION_DEG = -20;
@@ -47,8 +51,13 @@
   // Ombre douce : garde la patte visible même sur les boutons clairs
   // (fond crème), sans recourir à mix-blend-mode/backdrop-filter.
   cursor.style.filter = DEFAULT_FILTER;
-  cursor.style.transitionProperty = 'transform, opacity, filter';
-  cursor.style.transitionDuration = prefersReducedMotion ? '0s' : '0.2s, 0.2s, 0.15s';
+  // Pas de transition CSS sur `transform` : il est réécrit à chaque frame
+  // par la boucle rAF (tick), une transition dessus s'empilait sur le lerp
+  // JS et doublait le retard perçu. opacity/filter restent des changements
+  // d'état ponctuels (survol, sortie de viewport) — eux gardent une
+  // transition.
+  cursor.style.transitionProperty = 'opacity, filter';
+  cursor.style.transitionDuration = prefersReducedMotion ? '0s' : '0.2s, 0.15s';
   cursor.style.transitionTimingFunction = 'ease-out';
   document.body.appendChild(cursor);
 
