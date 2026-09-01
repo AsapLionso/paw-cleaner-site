@@ -1,1 +1,6 @@
 .DS_Store
+
+# Sous-projet react/ (voir react/README.md) : le bundle compilé n'est pas
+# encore intégré au site, pas de raison de le committer pour l'instant.
+react/node_modules/
+react/dist/

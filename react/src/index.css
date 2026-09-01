@@ -1,0 +1,14 @@
+/*
+ * Volontairement sans tailwindcss/preflight (le reset global de Tailwind) :
+ * ce sous-projet ne doit jamais écraser le CSS du site principal
+ * (assets/css/style.css) le jour où un composant d'ici serait monté sur une
+ * page existante du site. Seuls le thème et les classes utilitaires sont
+ * chargés — voir react/README.md.
+ */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  --color-background: #ffffff;
+  --color-primary: #171717;
+}
