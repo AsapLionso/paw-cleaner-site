@@ -1,0 +1,6 @@
+# GitHub Pages (Jekyll) : ne publier que le site. Le README, les outils et le sous-projet react/
+# restent dans le dépôt sans être servis sur pawcleaner.app.
+exclude:
+  - README.md
+  - tools
+  - react

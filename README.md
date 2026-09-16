@@ -4,20 +4,36 @@ Landing page officielle de [Paw Cleaner](https://pawcleaner.app), servie statiqu
 
 ## Structure
 
+Le site est **en français d'abord** (`/`), avec une version anglaise complète (`/en/`). Chaque page a sa
+jumelle dans l'autre langue : `hreflang`, pastille FR/EN dans la barre, lien dans le menu mobile et le pied.
+
 ```
-index.html          Landing page
-support/index.html  Page support (/support)
-privacy/index.html  Politique de confidentialité (/privacy)
-legal/index.html    Mentions légales (/legal)
-404.html            Page d'erreur
+index.html                    Landing, français (/)
+en/index.html                 Landing, anglais (/en/)
+aide/index.html               Aide (/aide/)                      ↔ support/index.html (/support/)
+confidentialite/index.html    Confidentialité (/confidentialite/) ↔ privacy/index.html (/privacy/)
+mentions-legales/index.html   Mentions légales (/mentions-legales/) ↔ legal/index.html (/legal/)
+404.html                      Page d'erreur, bilingue
 assets/
-  css/style.css      Design system (tokens repris de theme/index.ts de l'app)
+  css/style.css      Design system (tokens repris de theme/index.ts et warmPalette.ts de l'app)
   js/main.js         Nav mobile + reveal-on-scroll (respecte prefers-reduced-motion)
-  img/               Logo, favicons, screenshots, mascotte, grain, OG image
-  fonts/             Manrope (woff2, auto-hébergée)
+  js/companion.js    Monde du Compagnon : clignement du chaton, marches de pixels, coffre, scènes
+  js/cat-cursor.js   Curseur patte (passe à l'encre sur le monde chaud)
+  img/               Logo, favicons, mascotte, grain, images de partage (og-image.jpg FR, og-image-en.jpg EN)
+  img/app/fr, en/    Captures de l'app, build 9 (simulateur iPhone 16, 9:41), une série par langue
+  img/pixel/         Sprites de l'app à leur résolution d'art (chaton, silhouettes, coffres, crocks, jeux)
+  img/shop/          Les 24 objets de la boutique montrés sur la page
+  fonts/             Manrope (woff2) + Silkscreen (ttf, OFL — la police pixel de l'app)
+tools/
+  sync-app-assets.py Tire captures, sprites, objets de boutique et police depuis le dépôt de l'app (manuel)
+  make-og-images.py  Refait les deux images de partage à partir des ressources du site
+_config.yml          Exclut README, tools/ et react/ de la publication GitHub Pages
 CNAME                Domaine custom GitHub Pages (pawcleaner.app)
-robots.txt / sitemap.xml
+robots.txt / sitemap.xml (avec les alternates hreflang)
 ```
+
+Les adresses anglaises `/support/`, `/privacy/` et `/legal/` n'ont pas changé : ce sont celles déclarées
+dans App Store Connect.
 
 ## Déploiement
 
@@ -37,10 +53,53 @@ Les CTA "Download" pointent vers `#` et portent l'attribut `data-app-store-cta` 
 
 **Deux règles à tenir :**
 
-1. **Ces informations existent en double**, ici et dans l'app (`src/i18n/locales/{fr,en}.ts`, clé `legalScreen`). Toute correction se fait des deux côtés dans le même geste — une divergence sur des mentions légales ne se remarque qu'à la lecture croisée, donc jamais.
+1. **Ces informations existent en plusieurs exemplaires** : `/mentions-legales/` et `/confidentialite/` (français), `/legal/` et `/privacy/` (anglais), et l'app (`src/i18n/locales/{fr,en}.ts`, clés `legalScreen` et `privacyScreen`). Toute correction se fait partout dans le même geste — une divergence sur des mentions légales ne se remarque qu'à la lecture croisée, donc jamais.
 2. **Les conditions d'utilisation décrivent la v1** : application gratuite, sans publicité, sans achat intégré, EULA standard d'Apple. Elles seront à réécrire dès qu'un achat intégré sera réellement disponible.
 
 L'hébergeur indiqué (GitHub Pages) a été vérifié sur le service en ligne — enregistrements A dans la plage GitHub Pages, en-tête `server: GitHub.com` — et non déduit de la présence du fichier `CNAME`.
+
+## Build 9 : le monde du Compagnon (2026-09-17)
+
+La page présente l'app telle qu'elle est en build 9 : le tri (sombre, l'identité d'origine du site) et
+l'onglet Familier (chaud, en pixel art), exactement comme l'app passe d'un monde à l'autre. Le passage se
+fait par une frange de marches de pixels qui se pose au défilement.
+
+**Le propos** : le petit chat qui donne envie de trier sa galerie, un jour après l'autre. Héros, rituel du
+jour (choisir, swiper, il grandit, revenir demain), puis le monde du familier (il t'attend, sa maison et la
+boutique, les jeux, les quêtes et le coffre), puis le geste, les fonctions et la confidentialité.
+**Aucun nom de marque tierce** pour décrire le principe : on parle de petit chat, de familier, de compagnon.
+
+**Rien n'est redessiné pour le web.** Sprites, objets de boutique, police et palette viennent du dépôt de
+l'app (branche `chantier/da-piece-principale`) par `tools/sync-app-assets.py` ; les sprites sur grille exacte
+sont ramenés à leur résolution d'art et agrandis en `image-rendering: pixelated`.
+
+**Chaque affirmation est vérifiée dans le code de l'app** (relevé du 2026-09-17) : le chaton arrive le premier
+jour où l'on atteint 50 actions ; il gagne un jour par jour de tri (ouvrir l'app ne compte pas) ; nouvelles
+allures aux jours 7, 15, 30, 90 et 180 ; Croquettes et Memory dès le jour 0, pêche et cuisine au jour 7,
+dehors au jour 30 ; **472 articles proposés en boutique** (348 objets à poser, 124 murs et sols ; le script
+les recompte) ; Croquettes 42 s une fois par jour ; Memory six paliers ; pêche cinq appâts par jour ; jusqu'à
+cinq quêtes par jour payées en diamants ; un coffre = 50 à 150 crocks + un rare, épique ou légendaire ; un
+crock commun pour dix photos triées. **À revérifier à chaque build** qui touche ces règles.
+
+Choix à connaître :
+- **Seul le chaton du jour 0 se montre**, partout : la frise, les captures et les images de partage. Les
+  cinq allures suivantes sont en silhouette (celles de l'app) ; leurs sprites ne sont pas publiés.
+- **Aucun chat pixel sur fond noir** : tous les chats de l'app sont noirs, ils disparaîtraient.
+- **La boutique remplace les univers du dehors** : un nombre, les quatre raretés de crocks et 24 objets
+  choisis (liste `SHOWCASE` du script), noms tirés des traductions de l'app.
+- **Fonctions** : photos, vidéos, doublons. Favori et zoom restent dans la section du geste.
+- **La photo de la capture du tri** est celle déjà publiée sur le site (réinjectée dans le simulateur) ; les
+  photos d'exemple d'Apple du simulateur ne sont pas utilisées.
+- **Pas de mention des publicités ni des achats** : désactivés en build 9, prévus plus tard.
+
+Rafraîchir après une nouvelle build :
+1. Captures, en français puis en anglais (clé `pawcleaner.locale` = `en`) : état de démonstration avec
+   `pawcleaner.companion.ageFloor` = `3` et `pawcleaner.companion.lastSeenStage` = `kitten` (le chaton),
+   barre d'état à 9:41 ; quatre fichiers par langue : `room.png`, `swipe.png`, `kibble.png` (en pleine
+   partie), `shop_furniture.png`.
+2. `python3 tools/sync-app-assets.py <dépôt-app> <captures-fr> <captures-en>` : il affiche les comptes de
+   la boutique et le balisage de la grille dans les deux langues, à reporter dans `index.html` et `en/index.html`.
+3. `python3 tools/make-og-images.py`.
 
 ## Sous-projet `react/`
 

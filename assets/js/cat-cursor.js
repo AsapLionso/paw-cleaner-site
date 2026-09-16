@@ -30,6 +30,11 @@
   var HOVER_FILTER =
     'brightness(0) drop-shadow(0 0 1px rgba(255, 255, 255, 0.8)) drop-shadow(0 1px 4px rgba(255, 255, 255, 0.35))';
 
+  // Sur le monde chaud du Compagnon (fond parchemin, data-cursor="dark"), la
+  // patte crème disparaîtrait : elle passe à l'encre, avec une ombre douce
+  // couleur bois plutôt que noire.
+  var LIGHT_SURFACE_FILTER = 'brightness(0.22) drop-shadow(0 2px 5px rgba(74, 46, 26, 0.35))';
+
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   document.documentElement.style.cursor = 'none';
@@ -64,12 +69,13 @@
   var pos = { x: -100, y: -100 };
   var target = { x: -100, y: -100 };
   var isHovering = false;
+  var isOnLightSurface = false;
 
   function render() {
     var scale = isHovering ? HOVER_SCALE : 1;
     cursor.style.transform =
       'translate(-50%, -50%) translate(' + pos.x + 'px, ' + pos.y + 'px) rotate(' + CURSOR_ROTATION_DEG + 'deg) scale(' + scale + ')';
-    cursor.style.filter = isHovering ? HOVER_FILTER : DEFAULT_FILTER;
+    cursor.style.filter = isHovering ? HOVER_FILTER : isOnLightSurface ? LIGHT_SURFACE_FILTER : DEFAULT_FILTER;
   }
 
   window.addEventListener(
@@ -105,6 +111,15 @@
     render();
   }
   requestAnimationFrame(tick);
+
+  document.querySelectorAll('[data-cursor="dark"]').forEach(function (el) {
+    el.addEventListener('pointerenter', function () {
+      isOnLightSurface = true;
+    });
+    el.addEventListener('pointerleave', function () {
+      isOnLightSurface = false;
+    });
+  });
 
   document.querySelectorAll('[data-magnetic]').forEach(function (el) {
     el.addEventListener('pointerenter', function () {

@@ -1,28 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paw Cleaner — Clean your camera roll, one swipe at a time</title>
-<meta name="description" content="Paw Cleaner is a premium iOS app that helps you clean your camera roll with a simple swipe. Photos, videos, duplicates — sorted in minutes, entirely on your device.">
+<title>Paw Cleaner — Le petit chat qui te donne envie de trier ta galerie</title>
+<meta name="description" content="Paw Cleaner fait du tri de tes photos et vidéos un petit jeu du quotidien : quelques swipes par jour, et ton chat en pixel art grandit. Tout reste sur ton iPhone.">
 <link rel="canonical" href="https://pawcleaner.app/">
+<link rel="alternate" hreflang="fr" href="https://pawcleaner.app/">
+<link rel="alternate" hreflang="en" href="https://pawcleaner.app/en/">
+<link rel="alternate" hreflang="x-default" href="https://pawcleaner.app/en/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Paw Cleaner — Clean your camera roll">
-<meta property="og:description" content="A premium iOS app that helps you clean your camera roll with a simple swipe. On-device, private, and fast.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Paw Cleaner — Trie tes photos, fais grandir ton chat">
+<meta property="og:description" content="Le petit chat en pixel art qui te donne envie de trier ta galerie, un jour après l'autre. Tout reste sur ton iPhone.">
 <meta property="og:url" content="https://pawcleaner.app/">
 <meta property="og:image" content="https://pawcleaner.app/assets/img/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Paw Cleaner — Clean your camera roll">
-<meta name="twitter:description" content="A premium iOS app that helps you clean your camera roll with a simple swipe.">
+<meta name="twitter:title" content="Paw Cleaner — Trie tes photos, fais grandir ton chat">
+<meta name="twitter:description" content="Le petit chat en pixel art qui te donne envie de trier ta galerie, un jour après l'autre.">
 <meta name="twitter:image" content="https://pawcleaner.app/assets/img/og-image.jpg">
 <meta name="theme-color" content="#000000">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/css/style.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-
 <div class="grain" aria-hidden="true"></div>
 
 <div class="page">
@@ -33,39 +38,40 @@
       </a>
       <nav aria-label="Navigation principale">
         <ul class="nav__links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="/privacy/">Privacy</a></li>
-          <li><a href="/support/">Support</a></li>
+          <li><a href="#comment-ca-marche">Comment ça marche</a></li>
+          <li><a href="#familier">Le familier</a></li>
+          <li><a href="#fonctions">Fonctions</a></li>
+          <li><a href="/confidentialite/">Confidentialité</a></li>
+          <li><a href="/aide/">Aide</a></li>
+          <li><a href="/en/" class="nav__lang" hreflang="en" lang="en" aria-label="EN, English version">EN</a></li>
         </ul>
       </nav>
-      <!-- [APP_STORE_URL] : lien réel à brancher dès publication de l'app -->
-      <a href="#" class="btn btn--primary btn--sm nav__cta nav__cta--desktop" data-app-store-cta data-magnetic>Download</a>
+      <a href="#" class="btn btn--primary btn--sm nav__cta nav__cta--desktop" data-app-store-cta data-magnetic>Télécharger</a>
       <button class="nav__toggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6H21M3 12H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6H21M3 12H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
     <div class="container nav__mobile">
-      <a href="#features">Features</a>
-      <a href="#how-it-works">How it works</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="/support/">Support</a>
-      <a href="#" data-app-store-cta>Download</a>
+      <a href="#comment-ca-marche">Comment ça marche</a>
+      <a href="#familier">Le familier</a>
+      <a href="#fonctions">Fonctions</a>
+      <a href="/confidentialite/">Confidentialité</a>
+      <a href="/aide/">Aide</a>
+      <a href="/en/" hreflang="en" lang="en">English</a>
+      <a href="#" data-app-store-cta>Télécharger</a>
     </div>
   </header>
 
   <main>
-    <!-- Hero -->
+    <!-- Héros -->
     <section class="hero">
       <div class="container hero__inner">
-        <img src="/assets/img/logo.png" alt="" class="hero__logo" aria-hidden="true">
-        <h1><span data-gradient-shimmer data-gradient-preset="sunrise">Your camera roll.<br>Finally clean.</span></h1>
-        <p class="hero__sub">Clean up your photos and videos with a simple swipe.</p>
+        <h1><span data-gradient-shimmer data-gradient-preset="sunrise">Le petit chat qui te donne envie de trier ta&nbsp;galerie.</span></h1>
+        <p class="hero__sub">Paw Cleaner fait du tri de tes photos et vidéos un petit jeu du quotidien&nbsp;: quelques swipes par jour, et ton chat en pixel art grandit, joue et s'installe dans une maison que tu meubles. Ta galerie s'allège, un jour après l'autre.</p>
         <div class="hero__ctas">
-          <!-- [APP_STORE_URL] : lien réel à brancher dès publication de l'app -->
-          <a href="#" class="btn btn--primary" data-app-store-cta data-magnetic>Download on the App Store</a>
-          <a href="#how-it-works" class="hero__learn-more">Learn more
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <a href="#" class="btn btn--primary" data-app-store-cta data-magnetic>Télécharger sur l'App Store</a>
+          <a href="#comment-ca-marche" class="hero__learn-more">Comment ça marche
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
 
@@ -73,178 +79,373 @@
           <div class="phone phone--secondary phone--left" aria-hidden="true">
             <div class="phone__notch"></div>
             <div class="phone__screen">
-              <img src="/assets/img/shot_onboarding.webp" alt="" loading="lazy" width="640" height="1391">
+              <img src="/assets/img/app/fr/shot-swipe.webp" alt="" width="640" height="1387">
             </div>
           </div>
           <div class="phone phone--main">
             <div class="phone__notch"></div>
             <div class="phone__screen">
-              <img src="/assets/img/shot_swipe_session.webp" alt="Paw Cleaner swipe screen showing a photo card with keep, delete and favorite actions" width="640" height="1391">
+              <img src="/assets/img/app/fr/shot-companion-room.webp" alt="L'onglet Familier : un salon en pixel art où un petit chaton noir est assis sur le parquet, avec son nom, son âge et son humeur, et les boutons Quêtes, Jeux, Coffres, Boutique et Réglages" width="640" height="1387">
             </div>
           </div>
           <div class="phone phone--secondary phone--right" aria-hidden="true">
             <div class="phone__notch"></div>
             <div class="phone__screen">
-              <img src="/assets/img/shot_home.webp" alt="" loading="lazy" width="640" height="1391">
+              <img src="/assets/img/app/fr/shot-kibble.webp" alt="" width="640" height="1387">
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- How it works -->
-    <section id="how-it-works">
+    <!-- Comment ça marche : le rituel du jour -->
+    <section id="comment-ca-marche">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">How it works</span>
-          <h2 class="section-heading">From cluttered to clean in four steps.</h2>
+          <span class="eyebrow">Comment ça marche</span>
+          <h2 class="section-heading">Quelques minutes par jour, et ça devient une habitude.</h2>
         </div>
         <div class="steps">
           <div class="step reveal">
             <div class="step__index">01</div>
-            <div class="step__title">Pick a category</div>
-            <div class="step__body">Choose what you want to clean: all photos, old photos, screenshots, duplicates, or a random mix.</div>
+            <div class="step__title">Choisis quoi trier</div>
+            <div class="step__body">Toutes tes photos, les anciennes, les captures d'écran, les doublons, tes vidéos, ou le coup de dé&nbsp;: dix photos au hasard, une fois par jour.</div>
           </div>
           <div class="step reveal">
             <div class="step__index">02</div>
             <div class="step__title">Swipe</div>
-            <div class="step__body">Keep, delete, or favorite — one photo at a time, at your own pace.</div>
+            <div class="step__body">À droite pour garder, à gauche pour supprimer, vers le haut pour mettre en favori. Rien n'est supprimé sans ta&nbsp;confirmation.</div>
           </div>
           <div class="step reveal">
             <div class="step__index">03</div>
-            <div class="step__title">Clean</div>
-            <div class="step__body">Confirm your choices. Paw Cleaner never deletes anything without your explicit confirmation.</div>
+            <div class="step__title">Ton familier grandit</div>
+            <div class="step__body">Chaque jour où tu tries, il gagne un jour. Et toutes les dix photos triées, tu gagnes un crock pour sa maison.</div>
           </div>
           <div class="step reveal">
             <div class="step__index">04</div>
-            <div class="step__title">Done</div>
-            <div class="step__body">A cleaner photo library, without the hassle of scrolling through thousands of shots.</div>
+            <div class="step__title">Reviens demain</div>
+            <div class="step__body">De nouvelles quêtes, une partie de Croquettes et un coffre à gagner t'attendent chaque jour.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Gestures -->
+    <!-- ═══════════ Le familier : le monde chaud en pixel art ═══════════ -->
+    <div class="world" data-cursor="dark">
+      <div class="pixel-edge pixel-edge--rise" aria-hidden="true"></div>
+
+      <section class="warm" id="familier">
+        <div class="container">
+          <div class="warm-head">
+            <h2 class="px-title">Quelqu'un t'attend</h2>
+            <p class="warm-lede">Le premier jour où tu atteins 50 actions, un chaton s'installe chez toi. Donne-lui un nom. Ensuite, chaque jour où tu tries tes photos ou tes vidéos, il gagne un jour, et il change d'allure en grandissant.</p>
+          </div>
+
+          <ol class="growth" aria-label="Comment grandit ton familier">
+            <li class="growth__step">
+              <img class="growth__cat px" src="/assets/img/pixel/cat-1.png" data-blink="/assets/img/pixel/cat-1-blink.png" alt="Un petit chaton noir" width="96" height="96">
+              <span class="growth__day">Jour 0</span>
+            </li>
+            <li class="growth__step growth__step--mystery">
+              <img class="growth__cat px" src="/assets/img/pixel/cat-2-shadow.png" alt="Une silhouette : une allure à découvrir" width="96" height="96">
+              <span class="growth__day">Jour 7</span>
+            </li>
+            <li class="growth__step growth__step--mystery">
+              <img class="growth__cat px" src="/assets/img/pixel/cat-3-shadow.png" alt="Une silhouette : une allure à découvrir" width="96" height="96">
+              <span class="growth__day">Jour 15</span>
+            </li>
+            <li class="growth__step growth__step--mystery">
+              <img class="growth__cat px" src="/assets/img/pixel/cat-4-shadow.png" alt="Une silhouette : une allure à découvrir" width="96" height="96">
+              <span class="growth__day">Jour 30</span>
+            </li>
+            <li class="growth__step growth__step--mystery">
+              <img class="growth__cat px" src="/assets/img/pixel/cat-5-shadow.png" alt="Une silhouette : une allure à découvrir" width="96" height="96">
+              <span class="growth__day">Jour 90</span>
+            </li>
+            <li class="growth__step growth__step--mystery">
+              <img class="growth__cat px" src="/assets/img/pixel/cat-6-shadow.png" alt="Une silhouette : une allure à découvrir" width="96" height="96">
+              <span class="growth__day">Jour 180</span>
+            </li>
+          </ol>
+          <p class="growth__caption">Ouvrir l'app ne compte pas. Trier, si.</p>
+        </div>
+      </section>
+
+      <section class="warm warm--home">
+        <div class="container home">
+          <div class="home__copy">
+            <h2 class="px-title">Une maison à ton image</h2>
+            <p class="warm-lede">Tout commence par un salon. La cuisine ouvre au jour 7, le dehors au jour 30. Meuble-les avec les crocks que tu gagnes en triant et en jouant.</p>
+            <ul class="shelf" aria-label="Les rayons de la boutique">
+              <li>Meubles</li><li>Assises</li><li>Repos</li><li>Décoration</li><li>Plantes</li><li>Lumières</li><li>Au mur</li><li>Jouets</li><li>Murs</li><li>Sols</li>
+            </ul>
+          </div>
+          <div class="home__phones">
+            <div class="phone phone--flat phone--single">
+              <div class="phone__notch"></div>
+              <div class="phone__screen">
+                <img src="/assets/img/app/fr/shot-shop.webp" alt="La boutique : des meubles en pixel art avec leur prix en crocks, et des boutons pour déplacer ou ranger ce que tu possèdes" width="640" height="1387" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container shop">
+          <div class="shop__head">
+            <h3 class="shop__count"><span class="shop__number">472</span> articles en boutique</h3>
+            <p class="warm-text">Des meubles, des plantes, des lampes, des jouets pour ton chat et de quoi équiper toute la cuisine&nbsp;: 348 objets à poser, et 124 murs et sols. Les petites pièces se paient en crocks communs, les pièces maîtresses demandent aussi des crocks plus rares.</p>
+            <ul class="crock-legend" aria-label="Les quatre raretés de crocks">
+              <li><img class="px" src="/assets/img/pixel/crock-common.png" alt="" width="42" height="41" loading="lazy">Commun</li>
+              <li><img class="px" src="/assets/img/pixel/crock-rare.png" alt="" width="38" height="38" loading="lazy">Rare</li>
+              <li><img class="px" src="/assets/img/pixel/crock-epic.png" alt="" width="34" height="38" loading="lazy">Épique</li>
+              <li><img class="px" src="/assets/img/pixel/crock-legendary.png" alt="" width="36" height="35" loading="lazy">Légendaire</li>
+            </ul>
+          </div>
+          <ul class="shop__grid" aria-label="Quelques articles de la boutique">
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/cat-tree.png" alt="" width="74" height="106" loading="lazy"></span><span class="shop-item__name">Arbre à chat</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/armchair-wing.png" alt="" width="73" height="75" loading="lazy"></span><span class="shop-item__name">Bergère à oreilles</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/basket-cat-cave.png" alt="" width="60" height="61" loading="lazy"></span><span class="shop-item__name">Grotte du chat</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/lamp-paper-moon.png" alt="" width="41" height="53" loading="lazy"></span><span class="shop-item__name">Suspension lune</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/bookshelf.png" alt="" width="69" height="108" loading="lazy"></span><span class="shop-item__name">Bibliothèque</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/plant-maple-bonsai.png" alt="" width="41" height="48" loading="lazy"></span><span class="shop-item__name">Érable bonsaï</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/turntable.png" alt="" width="43" height="40" loading="lazy"></span><span class="shop-item__name">Tourne-disque</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/bed-teepee-cat.png" alt="" width="50" height="61" loading="lazy"></span><span class="shop-item__name">Tipi du chat</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/fountain-stone.png" alt="" width="34" height="38" loading="lazy"></span><span class="shop-item__name">Fontaine de pierre</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/chair-egg-shell.png" alt="" width="63" height="78" loading="lazy"></span><span class="shop-item__name">Fauteuil coque</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/art-sunburst-mirror.png" alt="" width="53" height="56" loading="lazy"></span><span class="shop-item__name">Miroir soleil</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/wool-ball.png" alt="" width="32" height="37" loading="lazy"></span><span class="shop-item__name">Balle en laine</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/lamp-lava.png" alt="" width="27" height="56" loading="lazy"></span><span class="shop-item__name">Lampe à lave</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/fridge-fifties.png" alt="" width="53" height="84" loading="lazy"></span><span class="shop-item__name">Frigo fifties</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/terrarium.png" alt="" width="25" height="35" loading="lazy"></span><span class="shop-item__name">Terrarium</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/screen-byobu.png" alt="" width="77" height="56" loading="lazy"></span><span class="shop-item__name">Paravent byōbu</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/crystals.png" alt="" width="29" height="34" loading="lazy"></span><span class="shop-item__name">Cristaux</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/scratch-post.png" alt="" width="49" height="79" loading="lazy"></span><span class="shop-item__name">Griffoir</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/stove.png" alt="" width="55" height="83" loading="lazy"></span><span class="shop-item__name">Cuisinière</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/landscape-frame.png" alt="" width="41" height="56" loading="lazy"></span><span class="shop-item__name">Paysage encadré</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/espresso-machine.png" alt="" width="42" height="51" loading="lazy"></span><span class="shop-item__name">Machine à espresso</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/lantern-brass.png" alt="" width="27" height="55" loading="lazy"></span><span class="shop-item__name">Lanterne ajourée</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/bed-sun-patch.png" alt="" width="60" height="47" loading="lazy"></span><span class="shop-item__name">Coussin de soleil</span></li>
+            <li class="shop-item"><span class="shop-item__tile"><img class="px" src="/assets/img/shop/teapot.png" alt="" width="37" height="37" loading="lazy"></span><span class="shop-item__name">Théière</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="warm warm--games" id="jeux">
+        <div class="container games">
+          <div class="warm-head">
+            <h2 class="px-title">À quoi on joue&nbsp;?</h2>
+            <p class="warm-lede">Trois petits mondes à explorer, une courte pause à la fois. Plus tu tries aujourd'hui, plus ton familier est de bonne humeur, et plus chaque partie rapporte.</p>
+          </div>
+
+          <div class="game-list">
+            <article class="game-card">
+              <div class="game-card__text">
+                <h3 class="game-card__title">Croquettes</h3>
+                <p class="game-card__invite">Attrape les crocks. Évite les surprises.</p>
+                <p class="game-card__status"><span class="game-card__dot" aria-hidden="true"></span>Une partie de 42 secondes par jour</p>
+              </div>
+              <div class="game-card__scene scene scene--kibble" aria-hidden="true">
+                <img class="scene__fill" src="/assets/img/pixel/scene-sky.webp" alt="" loading="lazy">
+                <img class="scene__moon" src="/assets/img/pixel/moon.png" alt="" loading="lazy">
+                <img class="scene__cloud scene__cloud--a anim-drift-x" src="/assets/img/pixel/cloud-1.png" alt="" loading="lazy">
+                <img class="scene__cloud scene__cloud--b anim-drift-x" src="/assets/img/pixel/cloud-3.png" alt="" loading="lazy">
+                <img class="scene__kibble scene__kibble--a anim-float" src="/assets/img/pixel/kibble-1.png" alt="" loading="lazy">
+                <img class="scene__kibble scene__kibble--b anim-float" src="/assets/img/pixel/kibble-3.png" alt="" loading="lazy">
+                <img class="scene__bomb anim-float px" src="/assets/img/pixel/bomb.png" alt="" loading="lazy">
+                <span class="scene__coin anim-float"><img class="anim-spin px" src="/assets/img/pixel/coin.png" alt="" loading="lazy"></span>
+                <span class="scene__platform"></span>
+              </div>
+            </article>
+
+            <article class="game-card">
+              <div class="game-card__text">
+                <h3 class="game-card__title">Memory</h3>
+                <p class="game-card__invite">Mémorise l'objet et retrouve-le&nbsp;!</p>
+                <p class="game-card__status"><span class="game-card__dot" aria-hidden="true"></span>Six paliers, de Facile à Divin</p>
+              </div>
+              <div class="game-card__scene scene scene--memory" aria-hidden="true">
+                <img class="scene__fill" src="/assets/img/pixel/floor-band.webp" alt="" loading="lazy">
+                <span class="scene__card scene__card--face anim-float"><img class="px" src="/assets/img/pixel/snow-globe.png" alt="" loading="lazy"></span>
+                <img class="scene__card scene__card--back anim-float" src="/assets/img/pixel/card-back.png" alt="" loading="lazy">
+              </div>
+            </article>
+
+            <article class="game-card">
+              <div class="game-card__text">
+                <h3 class="game-card__title">Pêche</h3>
+                <p class="game-card__invite">Le bon geste au bon moment.</p>
+                <p class="game-card__status"><span class="game-card__dot" aria-hidden="true"></span>Cinq appâts par jour, dès le jour 7</p>
+              </div>
+              <div class="game-card__scene scene scene--fishing" aria-hidden="true">
+                <img class="scene__fill" src="/assets/img/pixel/scene-lake.webp" alt="" loading="lazy">
+                <img class="scene__fish scene__fish--left px anim-swim-left" src="/assets/img/pixel/fish-1.png" alt="" loading="lazy">
+                <img class="scene__fish scene__fish--right px anim-swim-right" src="/assets/img/pixel/fish-2.png" alt="" loading="lazy">
+                <span class="scene__bobber">
+                  <img class="scene__bobber-under anim-bob" src="/assets/img/pixel/bobber.png" alt="" loading="lazy">
+                  <span class="scene__bobber-window"><img class="anim-bob" src="/assets/img/pixel/bobber.png" alt="" loading="lazy"></span>
+                </span>
+                <img class="scene__reed scene__reed--left anim-sway" src="/assets/img/pixel/reed-1.png" alt="" loading="lazy">
+                <img class="scene__reed scene__reed--right anim-sway" src="/assets/img/pixel/reed-2.png" alt="" loading="lazy">
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="warm warm--quests">
+        <div class="container quests">
+          <div class="quests__copy">
+            <h2 class="px-title">Un coffre à ouvrir chaque jour</h2>
+            <p class="warm-lede">Jusqu'à cinq quêtes par jour&nbsp;: finir ton coup de dé, trier quelques photos anciennes, utiliser tes appâts, jouer ensemble. Chacune rapporte des diamants. Termine-les toutes et le coffre du jour est à toi.</p>
+            <ul class="quest-list">
+              <li class="quest">
+                <span class="quest__icon"><img class="px" src="/assets/img/pixel/icon-dice.png" alt="" loading="lazy"></span>
+                <span class="quest__label">Finir le coup de dé Photos</span>
+                <span class="quest__reward"><img class="px" src="/assets/img/pixel/diamond.png" alt="" loading="lazy">+5</span>
+              </li>
+              <li class="quest">
+                <span class="quest__icon"><img class="px" src="/assets/img/pixel/icon-fishing.png" alt="" loading="lazy"></span>
+                <span class="quest__label">Finir ses 5 appâts à la pêche</span>
+                <span class="quest__reward"><img class="px" src="/assets/img/pixel/diamond.png" alt="" loading="lazy">+11</span>
+              </li>
+              <li class="quest">
+                <span class="quest__icon"><img class="px" src="/assets/img/pixel/icon-photo.png" alt="" loading="lazy"></span>
+                <span class="quest__label">Trier 5 photos anciennes</span>
+                <span class="quest__reward"><img class="px" src="/assets/img/pixel/diamond.png" alt="" loading="lazy">+8</span>
+              </li>
+            </ul>
+          </div>
+
+          <figure class="chest" data-chest>
+            <div class="chest__stage">
+              <img class="chest__sprite px" src="/assets/img/pixel/chest-closed.png" data-frames="/assets/img/pixel/chest-ajar.png /assets/img/pixel/chest-open.png" alt="Le coffre du jour, qui s'ouvre" width="84" height="82">
+              <ul class="chest__loot" aria-hidden="true">
+                <li><img class="px" src="/assets/img/pixel/crock-common.png" alt=""></li>
+                <li><img class="px" src="/assets/img/pixel/crock-rare.png" alt=""></li>
+                <li><img class="px" src="/assets/img/pixel/crock-epic.png" alt=""></li>
+                <li><img class="px" src="/assets/img/pixel/crock-legendary.png" alt=""></li>
+              </ul>
+            </div>
+            <figcaption class="chest__caption">Chaque coffre contient 50 à 150 crocks, plus un rare, un épique ou un légendaire. Les diamants en trop achètent d'autres coffres.</figcaption>
+          </figure>
+        </div>
+        <div class="container warm-cta">
+          <a href="#" class="key" data-app-store-cta data-magnetic>Télécharger sur l'App Store</a>
+        </div>
+      </section>
+
+      <div class="pixel-edge pixel-edge--fall" aria-hidden="true"></div>
+    </div>
+    <!-- ═══════════ retour au monde sombre : le tri ═══════════ -->
+
+    <!-- Le geste -->
     <section>
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">The interaction</span>
-          <h2 class="section-heading">As simple as swiping.</h2>
+          <span class="eyebrow">Le geste</span>
+          <h2 class="section-heading">Aussi simple qu'un swipe.</h2>
         </div>
         <div class="gestures">
           <div class="gesture gesture--delete reveal">
             <div class="gesture__icon">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M5.5 5 L18.5 18.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18.3 5.4 L5.8 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5.5 5 L18.5 18.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18.3 5.4 L5.8 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
-            <div class="gesture__direction">← Swipe left</div>
-            <div class="gesture__label">Delete</div>
+            <div class="gesture__direction">Swipe à gauche</div>
+            <div class="gesture__label">Supprimer</div>
           </div>
           <div class="gesture reveal">
             <div class="gesture__icon">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M4.5 12.8 L9.3 17.8 L19.6 5.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 12.8 L9.3 17.8 L19.6 5.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div class="gesture__direction">Swipe right →</div>
-            <div class="gesture__label">Keep</div>
+            <div class="gesture__direction">Swipe à droite</div>
+            <div class="gesture__label">Garder</div>
           </div>
           <div class="gesture reveal">
             <div class="gesture__icon">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M11.7 2.8 L14.4 8.8 L20.9 9.5 L15.7 13.4 L17.0 19.6 L12.3 15.3 L6.4 19.5 L8.3 12.9 L3.1 9.4 L10.1 8.8 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11.7 2.8 L14.4 8.8 L20.9 9.5 L15.7 13.4 L17.0 19.6 L12.3 15.3 L6.4 19.5 L8.3 12.9 L3.1 9.4 L10.1 8.8 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
             </div>
-            <div class="gesture__direction">↑ Swipe up</div>
-            <div class="gesture__label">Favorite</div>
+            <div class="gesture__direction">Swipe vers le haut</div>
+            <div class="gesture__label">Favori</div>
+          </div>
+          <div class="gesture reveal">
+            <div class="gesture__icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4H20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 4L13.5 10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 20H4V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20L10.5 13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="gesture__direction">Pincer</div>
+            <div class="gesture__label">Zoomer</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Features -->
-    <section id="features">
+    <!-- Fonctions -->
+    <section id="fonctions">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Features</span>
-          <h2 class="section-heading">Everything you need, nothing you don't.</h2>
+          <span class="eyebrow">Fonctions</span>
+          <h2 class="section-heading">Tout ce qu'il faut,<br>rien de trop.</h2>
         </div>
         <div class="features">
           <div class="feature reveal">
-            <svg class="feature__icon" viewBox="0 0 40 40" fill="none"><path d="M13 7 H27 A6 6 0 0 1 33 13 V27 A6 6 0 0 1 27 33 H13 A6 6 0 0 1 7 27 V13 A6 6 0 0 1 13 7 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="14" cy="15" r="2.1" stroke="currentColor" stroke-width="1.4"/><path d="M10 27 L16 20 L20.5 24.5 L25 18.5 L30 25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div class="feature__title">Photo cleaning</div>
-            <div class="feature__body">Go through your photos one swipe at a time.</div>
+            <svg class="feature__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M13 7 H27 A6 6 0 0 1 33 13 V27 A6 6 0 0 1 27 33 H13 A6 6 0 0 1 7 27 V13 A6 6 0 0 1 13 7 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="14" cy="15" r="2.1" stroke="currentColor" stroke-width="1.4"/><path d="M10 27 L16 20 L20.5 24.5 L25 18.5 L30 25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="feature__title">Tri des photos</div>
+            <div class="feature__body">Passe tes photos en revue, un swipe à la fois.</div>
           </div>
           <div class="feature reveal">
-            <svg class="feature__icon" viewBox="0 0 40 40" fill="none"><path d="M13 7 H27 A6 6 0 0 1 33 13 V27 A6 6 0 0 1 27 33 H13 A6 6 0 0 1 7 27 V13 A6 6 0 0 1 13 7 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M17 14.5 L26 20 L17 25.5 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-            <div class="feature__title">Video cleaning</div>
-            <div class="feature__body">Clean your videos with the same simple interaction.</div>
+            <svg class="feature__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M13 7 H27 A6 6 0 0 1 33 13 V27 A6 6 0 0 1 27 33 H13 A6 6 0 0 1 7 27 V13 A6 6 0 0 1 13 7 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M17 14.5 L26 20 L17 25.5 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <div class="feature__title">Tri des vidéos</div>
+            <div class="feature__body">Les vidéos se lisent pendant le tri, avec une barre pour les parcourir.</div>
           </div>
           <div class="feature reveal">
-            <svg class="feature__icon" viewBox="0 0 40 40" fill="none"><path d="M15 6 H26 A5 5 0 0 1 31 11 V22 A5 5 0 0 1 26 27 H15 A5 5 0 0 1 10 22 V11 A5 5 0 0 1 15 6 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" opacity="0.5"/><path d="M13 13 H24 A5 5 0 0 1 29 18 V29 A5 5 0 0 1 24 34 H13 A5 5 0 0 1 8 29 V18 A5 5 0 0 1 13 13 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            <div class="feature__title">Duplicates</div>
-            <div class="feature__body">Find photos that don't need to stay in your library.</div>
-          </div>
-          <div class="feature reveal">
-            <svg class="feature__icon" viewBox="0 0 24 24" fill="none"><path d="M11.7 2.8 L14.4 8.8 L20.9 9.5 L15.7 13.4 L17.0 19.6 L12.3 15.3 L6.4 19.5 L8.3 12.9 L3.1 9.4 L10.1 8.8 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            <div class="feature__title">Favorites</div>
-            <div class="feature__body">Keep your best shots close.</div>
-          </div>
-          <div class="feature reveal">
-            <svg class="feature__icon" viewBox="0 0 24 24" fill="none"><path d="M18 17 V11 A6 6 0 0 0 12 5 H7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M10.3 2 L6.5 5 L10.3 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-            <div class="feature__title">Undo</div>
-            <div class="feature__body">Changed your mind? Undo your last action.</div>
+            <svg class="feature__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M15 6 H26 A5 5 0 0 1 31 11 V22 A5 5 0 0 1 26 27 H15 A5 5 0 0 1 10 22 V11 A5 5 0 0 1 15 6 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" opacity="0.5"/><path d="M13 13 H24 A5 5 0 0 1 29 18 V29 A5 5 0 0 1 24 34 H13 A5 5 0 0 1 8 29 V18 A5 5 0 0 1 13 13 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <div class="feature__title">Doublons</div>
+            <div class="feature__body">Compare les photos presque identiques et garde la meilleure.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Privacy -->
+    <!-- Confidentialité -->
     <section>
       <div class="container privacy">
         <div class="reveal">
-          <span class="eyebrow">Privacy</span>
-          <h2 class="section-heading">Your photos stay yours.</h2>
-          <p class="section-sub">Paw Cleaner is designed to keep your photo library private. Your photos are processed on your device and are not uploaded to our servers.</p>
-          <a href="/privacy/" class="privacy__link">Read the full Privacy Policy →</a>
+          <span class="eyebrow">Confidentialité</span>
+          <h2 class="section-heading">Tes photos restent à toi.</h2>
+          <p class="section-sub">Paw Cleaner est conçu pour garder ta photothèque privée. Tes photos sont traitées sur ton appareil et ne sont pas envoyées sur nos serveurs. Ton familier, sa maison et ta progression vivent aussi sur ton iPhone.</p>
+          <a href="/confidentialite/" class="privacy__link">Lire la politique de confidentialité →</a>
         </div>
         <div class="privacy__points reveal">
           <div class="privacy__point">
-            <svg class="privacy__point-icon" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <svg class="privacy__point-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
             <div>
-              <div class="privacy__point-title">On-device processing</div>
-              <div class="privacy__point-body">Your photos stay on your iPhone.</div>
+              <div class="privacy__point-title">Traitement sur l'appareil</div>
+              <div class="privacy__point-body">Tes photos restent sur ton iPhone.</div>
             </div>
           </div>
           <div class="privacy__point">
-            <svg class="privacy__point-icon" viewBox="0 0 24 24" fill="none"><path d="M12 3 L20 7 V12 C20 16.5 16.5 20.3 12 21.5 C7.5 20.3 4 16.5 4 12 V7 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <svg class="privacy__point-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 L20 7 V12 C20 16.5 16.5 20.3 12 21.5 C7.5 20.3 4 16.5 4 12 V7 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
             <div>
-              <div class="privacy__point-title">No photo uploads</div>
-              <div class="privacy__point-body">Your personal library isn't sent to us.</div>
+              <div class="privacy__point-title">Aucun envoi de photos</div>
+              <div class="privacy__point-body">Ta photothèque ne nous est pas transmise.</div>
             </div>
           </div>
           <div class="privacy__point">
-            <svg class="privacy__point-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20 C5 15.5 8 13 12 13 C16 13 19 15.5 19 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <svg class="privacy__point-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20 C5 15.5 8 13 12 13 C16 13 19 15.5 19 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
             <div>
-              <div class="privacy__point-title">You stay in control</div>
-              <div class="privacy__point-body">You choose what Paw Cleaner can access.</div>
+              <div class="privacy__point-title">Tu gardes la main</div>
+              <div class="privacy__point-body">Tu choisis ce à quoi Paw Cleaner a accès.</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Mid CTA -->
-    <section class="mid-cta">
-      <div class="container reveal">
-        <div class="mid-cta__title">Ready to clean your camera roll?</div>
-        <!-- [APP_STORE_URL] : lien réel à brancher dès publication de l'app -->
-        <a href="#" class="btn btn--primary" data-app-store-cta data-magnetic>Download Paw Cleaner</a>
-      </div>
-    </section>
-
-    <!-- Final CTA -->
+    <!-- Dernier appel -->
     <section class="final-cta">
       <div class="container reveal">
         <img src="/assets/img/mascot.webp" alt="" class="final-cta__mascot" aria-hidden="true">
-        <h2 class="final-cta__title">Your camera roll<br>deserves a little cleanup.</h2>
-        <!-- [APP_STORE_URL] : lien réel à brancher dès publication de l'app -->
-        <a href="#" class="btn btn--primary" data-app-store-cta data-magnetic>Download Paw Cleaner</a>
+        <h2 class="final-cta__title">Trie tes photos.<br>Fais grandir ton&nbsp;chat.</h2>
+        <a href="#" class="btn btn--primary" data-app-store-cta data-magnetic>Télécharger Paw Cleaner</a>
       </div>
     </section>
   </main>
@@ -254,21 +455,21 @@
       <div class="footer__top">
         <div class="footer__brand">
           <img src="/assets/img/logo.png" alt="Paw Cleaner">
-          <p class="footer__tagline">Clean your camera roll. One swipe at a time.</p>
+          <p class="footer__tagline">Trie ta galerie, un swipe à la fois.</p>
         </div>
         <div class="footer__links">
           <div class="footer__col">
-            <span class="footer__col-title">Product</span>
-            <a href="#features">Features</a>
-            <a href="#how-it-works">How it works</a>
-            <!-- [APP_STORE_URL] : lien réel à brancher dès publication de l'app -->
-            <a href="#" data-app-store-cta>Download on the App Store</a>
+            <span class="footer__col-title">Produit</span>
+            <a href="#comment-ca-marche">Comment ça marche</a>
+            <a href="#familier">Le familier</a>
+            <a href="#fonctions">Fonctions</a>
+            <a href="#" data-app-store-cta>Télécharger sur l'App Store</a>
           </div>
           <div class="footer__col">
-            <span class="footer__col-title">Legal</span>
-            <a href="/privacy/">Privacy Policy</a>
-            <a href="/legal/">Legal Notice</a>
-            <a href="/support/">Support</a>
+            <span class="footer__col-title">Légal</span>
+            <a href="/confidentialite/">Confidentialité</a>
+            <a href="/mentions-legales/">Mentions légales</a>
+            <a href="/aide/">Aide</a>
           </div>
           <div class="footer__col">
             <span class="footer__col-title">Contact</span>
@@ -278,8 +479,8 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <span>© 2026 Paw Cleaner</span>
-        <span>Made for iOS.</span>
+        <span>© 2026 Paw Cleaner · Conçu pour iOS.</span>
+        <a href="/en/" class="footer__lang" hreflang="en" lang="en">English version</a>
       </div>
     </div>
   </footer>
@@ -288,5 +489,6 @@
 <script src="/assets/js/gradient-shimmer.js"></script>
 <script src="/assets/js/cat-cursor.js"></script>
 <script src="/assets/js/main.js"></script>
+<script src="/assets/js/companion.js"></script>
 </body>
 </html>
