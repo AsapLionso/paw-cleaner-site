@@ -422,8 +422,10 @@ section {
 
 /* ---------- Hero ---------- */
 
+/* Le titre respire sous l'en-tête (fondateur, 2026-09-17 : « trop collé au header ») :
+   48 px sur téléphone, jusqu'à 72 px sur grand écran. */
 .hero {
-  padding-top: var(--space-xl);
+  padding-top: clamp(48px, 5vw, 72px);
   padding-bottom: 0;
 }
 
