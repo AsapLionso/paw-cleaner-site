@@ -93,8 +93,7 @@ def make(lang: str) -> None:
     mask = Image.new('L', screen.size, 0)
     ImageDraw.Draw(mask).rounded_rectangle((0, 0, screen.width - 1, screen.height - 1), radius=34, fill=255)
     im.paste(screen, (px, py), mask)
-    notch_w = 78
-    draw.rounded_rectangle((px + (screen_w - notch_w) // 2, py + 9, px + (screen_w + notch_w) // 2, py + 31), radius=11, fill=(0, 0, 0))
+    # Pas d'encoche dessinée : la capture porte déjà la Dynamic Island.
 
     # The kitten on the Kibble platform, twice its art size.
     platform = Image.open(IMG / 'pixel/platform.png').convert('RGBA')

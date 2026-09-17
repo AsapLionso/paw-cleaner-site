@@ -512,17 +512,9 @@ section {
   flex-shrink: 0;
 }
 
-.phone__notch {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 84px;
-  height: 22px;
-  background: #0a0a0a;
-  border-radius: var(--radius-pill);
-  z-index: 2;
-}
+/* Pas d'encoche dessinée : les captures de l'app portent déjà la Dynamic Island de l'iPhone 16.
+   L'ancienne pastille CSS se posait quelques pixels au-dessus de la vraie et la doublait
+   (fondateur, 2026-09-17). */
 
 .phone__screen {
   position: relative;
