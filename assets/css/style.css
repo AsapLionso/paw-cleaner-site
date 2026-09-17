@@ -226,6 +226,23 @@ h3,
   text-wrap: balance;
 }
 
+/* Lisibilité (fondateur, 2026-09-17 : « bien mettre des espaces pour que ce soit lisible ») :
+   Manrope en clair sur fond noir paraît serrée. Un peu d'air entre les mots et des lignes plus
+   hautes dans les paragraphes ; les titres pixel (Silkscreen) gardent leur propre approche. */
+.hero__sub,
+.section-sub,
+.step__body,
+.feature__body,
+.privacy__point-body,
+.doc__lede,
+.doc__section p,
+.warm-lede,
+.warm-text,
+.chest__caption {
+  word-spacing: 0.06em;
+  line-height: 1.65;
+}
+
 /* FR / EN : la même pastille partout, la langue d'arrivée écrite en toutes lettres. */
 .nav__links .nav__lang {
   display: inline-block;
@@ -376,7 +393,8 @@ section {
 .section-heading {
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  word-spacing: 0.06em;
   line-height: 1.15;
   max-width: 640px;
   text-wrap: balance;
@@ -426,16 +444,26 @@ section {
 .hero h1 {
   font-size: clamp(40px, 7vw, 72px);
   font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.04;
+  letter-spacing: -0.015em;
+  word-spacing: 0.12em;
+  line-height: 1.08;
   max-width: 1000px;
   text-wrap: balance;
+}
+
+/* Le dégradé animé (gradient-shimmer.js) peint la boîte du texte : sans marge basse, la
+   queue des lettres de la dernière ligne (le « g » de galerie) sortait du dégradé et
+   disparaissait. La marge est rendue aussitôt pour ne rien décaler. */
+.hero h1 [data-gradient-shimmer] {
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
 }
 
 .hero__sub {
   font-size: clamp(16px, 2vw, 19px);
   color: var(--color-text-muted);
   max-width: 600px;
+  text-wrap: balance;
 }
 
 .hero__ctas {
@@ -582,7 +610,7 @@ section {
 }
 
 .step__body {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-text-muted);
 }
 
@@ -687,7 +715,7 @@ section {
 }
 
 .feature__body {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-text-muted);
 }
 
@@ -775,7 +803,8 @@ section {
   text-wrap: balance;
   font-size: clamp(30px, 5vw, 48px);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  word-spacing: 0.06em;
   line-height: 1.1;
   margin-bottom: var(--space-2xl);
 }

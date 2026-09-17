@@ -64,7 +64,7 @@ La page présente l'app telle qu'elle est en build 9 : le tri (sombre, l'identit
 l'onglet Familier (chaud, en pixel art), exactement comme l'app passe d'un monde à l'autre. Le passage se
 fait par une frange de marches de pixels qui se pose au défilement.
 
-**Le propos** : le petit chat qui donne envie de trier sa galerie, un jour après l'autre. Héros, rituel du
+**Le propos** : le chaton qui donne envie de trier sa galerie, un jour après l'autre. Héros, rituel du
 jour (choisir, swiper, il grandit, revenir demain), puis le monde du familier (il t'attend, sa maison et la
 boutique, les jeux, les quêtes et le coffre), puis le geste, les fonctions et la confidentialité.
 **Aucun nom de marque tierce** pour décrire le principe : on parle de petit chat, de familier, de compagnon.
