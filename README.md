@@ -17,11 +17,11 @@ mentions-legales/index.html   Mentions légales (/mentions-legales/) ↔ legal/i
 assets/
   css/style.css      Design system (tokens repris de theme/index.ts et warmPalette.ts de l'app)
   js/main.js         Nav mobile + reveal-on-scroll (respecte prefers-reduced-motion)
-  js/companion.js    Monde du Compagnon : clignement du chaton, marches de pixels, coffre, scènes
+  js/companion.js    Monde du Compagnon : clignement du chat, marches de pixels, coffre, scènes
   js/cat-cursor.js   Curseur patte (passe à l'encre sur le monde chaud)
   img/               Logo, favicons, mascotte, grain, images de partage (og-image.jpg FR, og-image-en.jpg EN)
   img/app/fr, en/    Captures de l'app, build 9 (simulateur iPhone 16, 9:41), une série par langue
-  img/pixel/         Sprites de l'app à leur résolution d'art (chaton, silhouettes, coffres, crocks, jeux)
+  img/pixel/         Sprites de l'app à leur résolution d'art (chat du jour 0, silhouettes, coffres, crocks, jeux)
   img/shop/          Les 24 objets de la boutique montrés sur la page
   fonts/             Manrope (woff2) + Silkscreen (ttf, OFL — la police pixel de l'app)
 tools/
@@ -64,7 +64,7 @@ La page présente l'app telle qu'elle est en build 9 : le tri (sombre, l'identit
 l'onglet Familier (chaud, en pixel art), exactement comme l'app passe d'un monde à l'autre. Le passage se
 fait par une frange de marches de pixels qui se pose au défilement.
 
-**Le propos** : le chaton qui donne envie de trier sa galerie, un jour après l'autre. Héros, rituel du
+**Le propos** : « Qui a dit que trier ses photos était ennuyeux ? » — le chat qui donne envie de trier sa galerie, un jour après l'autre. Héros, rituel du
 jour (choisir, swiper, il grandit, revenir demain), puis le monde du familier (il t'attend, sa maison et la
 boutique, les jeux, les quêtes et le coffre), puis le geste, les fonctions et la confidentialité.
 **Aucun nom de marque tierce** pour décrire le principe : on parle de petit chat, de familier, de compagnon.
@@ -73,7 +73,7 @@ boutique, les jeux, les quêtes et le coffre), puis le geste, les fonctions et l
 l'app (branche `chantier/da-piece-principale`) par `tools/sync-app-assets.py` ; les sprites sur grille exacte
 sont ramenés à leur résolution d'art et agrandis en `image-rendering: pixelated`.
 
-**Chaque affirmation est vérifiée dans le code de l'app** (relevé du 2026-09-17) : le chaton arrive le premier
+**Chaque affirmation est vérifiée dans le code de l'app** (relevé du 2026-09-17) : le chat arrive le premier
 jour où l'on atteint 50 actions ; il gagne un jour par jour de tri (ouvrir l'app ne compte pas) ; nouvelles
 allures aux jours 7, 15, 30, 90 et 180 ; Croquettes et Memory dès le jour 0, pêche et cuisine au jour 7,
 dehors au jour 30 ; **472 articles proposés en boutique** (348 objets à poser, 124 murs et sols ; le script
@@ -82,7 +82,7 @@ cinq quêtes par jour payées en diamants ; un coffre = 50 à 150 crocks + un ra
 crock commun pour dix photos triées. **À revérifier à chaque build** qui touche ces règles.
 
 Choix à connaître :
-- **Seul le chaton du jour 0 se montre**, partout : la frise, les captures et les images de partage. Les
+- **Seul le chat du jour 0 se montre**, partout : la frise, les captures et les images de partage. Les
   cinq allures suivantes sont en silhouette (celles de l'app) ; leurs sprites ne sont pas publiés.
 - **Aucun chat pixel sur fond noir** : tous les chats de l'app sont noirs, ils disparaîtraient.
 - **La boutique remplace les univers du dehors** : un nombre, les quatre raretés de crocks et 24 objets
