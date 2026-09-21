@@ -4,7 +4,7 @@
   python3 tools/make-og-images.py
 
 Run after tools/sync-app-assets.py: everything comes from the site's own assets.
-Left, the sorting world (black, the wordmark, two lines in the app's pixel typeface);
+Left, the sorting world (black, the wordmark, the headline on three lines in the app's pixel typeface);
 right, the companion's world (parchment behind a stepped pixel edge, the kitten on the
 Kibble platform, the room screenshot in a phone). Only the kitten is ever shown: the
 later looks stay a surprise (founder, 2026-09-17).
@@ -30,10 +30,12 @@ GREY = (150, 150, 150)
 TEXT_LEFT = 75
 TEXT_RIGHT = EDGE_X - 40
 
+# The site's headline (founder, 2026-09-21), on three lines; the last one in honey.
 LINES = {
-    'fr': ('TRIE TES PHOTOS.', 'FAIS GRANDIR TON CHAT.', 'og-image.jpg', 'fr'),
-    'en': ('SORT YOUR PHOTOS.', 'GROW A LITTLE CAT.', 'og-image-en.jpg', 'en'),
+    'fr': (("TRIER SES PHOTOS", "N'A JAMAIS ÉTÉ AUSSI", 'SIMPLE ET FUN !'), 'og-image.jpg', 'fr'),
+    'en': (('SORTING YOUR PHOTOS', 'HAS NEVER BEEN THIS', 'SIMPLE AND FUN!'), 'og-image-en.jpg', 'en'),
 }
+LINE_STEP = 50          # 32 px type, 1.55 line height
 
 
 def spaced_width(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, tracking: int) -> int:
@@ -57,7 +59,7 @@ def fitted_tracking(draw: ImageDraw.ImageDraw, lines: tuple[str, ...], font: Ima
 
 
 def make(lang: str) -> None:
-    line1, line2, out_name, shot_lang = LINES[lang]
+    lines, out_name, shot_lang = LINES[lang]
     im = Image.new('RGB', (W, H), INK)
     draw = ImageDraw.Draw(im)
 
@@ -71,17 +73,17 @@ def make(lang: str) -> None:
     logo = Image.open(IMG / 'logo.png').convert('RGBA')
     logo_w = 430
     logo = logo.resize((logo_w, round(logo.height * logo_w / logo.width)), Image.LANCZOS)
-    im.paste(logo, (TEXT_LEFT, 172), logo)
+    im.paste(logo, (TEXT_LEFT, 147), logo)
 
-    # Two lines in Silkscreen, the second in honey, and the address.
+    # Three lines in Silkscreen, the last in honey, and the address.
     bold = SITE / 'assets/fonts/silkscreen-700.ttf'
     regular = SITE / 'assets/fonts/silkscreen-400.ttf'
     font = ImageFont.truetype(str(bold), 32)
-    tracking = fitted_tracking(draw, tuple(line for pair in LINES.values() for line in pair[:2]), font)
-    draw_spaced(draw, (TEXT_LEFT, 308), line1, font, WHITE, tracking)
-    draw_spaced(draw, (TEXT_LEFT, 308 + round(font.size * 1.55)), line2, font, HONEY, tracking)
+    tracking = fitted_tracking(draw, tuple(line for entry in LINES.values() for line in entry[0]), font)
+    for i, line in enumerate(lines):
+        draw_spaced(draw, (TEXT_LEFT, 283 + i * LINE_STEP), line, font, HONEY if i == len(lines) - 1 else WHITE, tracking)
     small = ImageFont.truetype(str(regular), 24)
-    draw_spaced(draw, (TEXT_LEFT, 444), 'PAWCLEANER.APP', small, GREY, 3)
+    draw_spaced(draw, (TEXT_LEFT, 469), 'PAWCLEANER.APP', small, GREY, 3)
 
     # The phone with the room screenshot (the kitten).
     shot = Image.open(IMG / 'app' / shot_lang / 'shot-companion-room.webp').convert('RGB')
