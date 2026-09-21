@@ -73,10 +73,10 @@ boutique, les jeux, les quêtes et le coffre), puis le geste, les fonctions et l
 l'app (branche `chantier/da-piece-principale`) par `tools/sync-app-assets.py` ; les sprites sur grille exacte
 sont ramenés à leur résolution d'art et agrandis en `image-rendering: pixelated`.
 
-**Chaque affirmation est vérifiée dans le code de l'app** (relevé du 2026-09-17) : le chat arrive le premier
-jour où l'on atteint 50 actions ; il gagne un jour par jour de tri (ouvrir l'app ne compte pas) ; nouvelles
+**Chaque affirmation est vérifiée dans le code de l'app** (relevé du 2026-09-17, seuil et boutique revus le 2026-09-21) : le chat arrive le premier
+jour où l'on atteint 30 actions ; il gagne un jour par jour de tri (ouvrir l'app ne compte pas) ; nouvelles
 allures aux jours 7, 15, 30, 90 et 180 ; Croquettes et Memory dès le jour 0, pêche et cuisine au jour 7,
-dehors au jour 30 ; **472 articles proposés en boutique** (348 objets à poser, 124 murs et sols ; le script
+dehors au jour 30 ; **644 articles proposés en boutique** (497 objets à poser, 147 murs et sols ; le script
 les recompte) ; Croquettes 42 s une fois par jour ; Memory six paliers ; pêche cinq appâts par jour ; jusqu'à
 cinq quêtes par jour payées en diamants ; un coffre = 50 à 150 crocks + un rare, épique ou légendaire ; un
 crock commun pour dix photos triées. **À revérifier à chaque build** qui touche ces règles.
