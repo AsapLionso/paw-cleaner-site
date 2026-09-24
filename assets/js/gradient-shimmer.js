@@ -6,6 +6,16 @@
 // zéro-dépendance du reste du site (voir README.md).
 (function () {
   var GRADIENT_PRESETS = {
+    // DA Paw (2026-09-24) : un reflet de lumière sur la matière mate des objets 3D de l'app, sans couleur.
+    // La base reste le blanc cassé du texte (#EDEDED) ; seul un liseré plus clair, suivi d'une ombre douce, balaie.
+    silver: [
+      { color: '#EDEDED', position: 0 },
+      { color: '#EDEDED', position: 0.36 },
+      { color: '#FFFFFF', position: 0.46 },
+      { color: '#A9A9A9', position: 0.54 },
+      { color: '#EDEDED', position: 0.64 },
+      { color: '#EDEDED', position: 1 },
+    ],
     sunrise: [
       { color: '#B6D3EF', position: 0 },
       { color: '#CAD1D7', position: 0.153 },
@@ -228,7 +238,9 @@
 
     measure();
 
+    // Sans mouvement, pas de reflet figé au milieu du titre : le texte reste plein.
     if ((respectReducedMotion && prefersReducedMotion()) || typeof el.animate !== 'function') {
+      revealNormalText(el);
       return function () {};
     }
 

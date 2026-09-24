@@ -101,7 +101,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-bg);
+  /* Transparent (2026-09-24) : le noir vient de <html>, et le grain + la lumière passent sous tout le contenu
+     dans le même plan que lui. C'est ce qui laisse les chats animés se fondre dans la lumière par « éclaircir »
+     au lieu de découper un carré noir. */
+  background: transparent;
   color: var(--color-text);
   font-family: var(--font-display);
   font-weight: 500;
@@ -137,12 +140,29 @@ button {
   background-image: url('../img/grain.png');
   background-repeat: repeat;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
+}
+
+/* La lumière de la DA Paw (2026-09-24) : même source que l'app et l'app Desktop, un halo très doux en haut
+   à gauche (7 % → 2 % → 0). Fixe comme le grain : elle éclaire la page sans jamais suivre le défilement. */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 95% 95% at 28% 8%, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02) 45%, transparent 100%);
 }
 
 .page {
   position: relative;
-  z-index: 1;
+}
+
+/* Les chats animés de l'app : des clips sur noir pur, fondus dans la page par « éclaircir ». Le noir disparaît,
+   le grain et la lumière du fond traversent les ombres, comme sur les objets 3D de l'app. */
+.paw-loop {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: screen;
 }
 
 .container {
@@ -437,6 +457,23 @@ section {
   gap: var(--space-lg);
 }
 
+.hero__cat {
+  position: relative;
+  width: clamp(190px, 22vw, 280px);
+  aspect-ratio: 1;
+  /* Le clip garde une marge noire autour du chat : on la reprend pour rapprocher le titre. */
+  margin: calc(clamp(190px, 22vw, 280px) * -0.08) 0 calc(clamp(190px, 22vw, 280px) * -0.14);
+}
+
+/* La flaque de lumière sous le chat : elle éclaircit le noir du clip par « éclaircir », jamais le chat. */
+.hero__cat::before {
+  content: '';
+  position: absolute;
+  inset: 12% 8% 4%;
+  background: radial-gradient(ellipse 50% 42% at 50% 62%, rgba(237, 237, 237, 0.09), transparent 70%);
+  pointer-events: none;
+}
+
 .hero__logo {
   height: 34px;
   width: auto;
@@ -576,17 +613,15 @@ section {
   }
 }
 
-@media (max-width: 560px) {
-  .steps {
-    grid-template-columns: 1fr;
-  }
+.step {
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
 }
 
-.step {
-  padding: var(--space-lg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
+.step__object {
+  width: 88px;
+  height: 88px;
+  margin: 0 0 var(--space-md) -6px;
 }
 
 .step__index {
@@ -606,6 +641,32 @@ section {
 .step__body {
   font-size: 15px;
   color: var(--color-text-muted);
+}
+
+/* Phone: the object sits beside its text, so four steps no longer stack four tall blocks. */
+@media (max-width: 560px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    column-gap: var(--space-md);
+    padding-top: var(--space-md);
+  }
+
+  .step__object {
+    grid-row: 1 / span 3;
+    width: 72px;
+    height: 72px;
+    margin: 0;
+  }
+
+  .step__index {
+    margin-bottom: var(--space-xs);
+  }
 }
 
 /* ---------- Gestures ---------- */
@@ -629,25 +690,25 @@ section {
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
-  padding: var(--space-xl) var(--space-lg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-sm);
   text-align: center;
 }
 
+/* Les touches rondes du tri, telles que dans l'app : anneau de 2 px, fond noir, rouge réservé à la suppression. */
 .gesture__icon {
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
   border-radius: var(--radius-pill);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid var(--color-border-strong);
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid var(--color-text);
 }
 
 .gesture__icon svg {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
 }
 
 .gesture--delete .gesture__icon {
@@ -689,21 +750,25 @@ section {
 }
 
 .feature {
-  padding: var(--space-lg);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 var(--space-md);
 }
 
-.feature__icon {
-  width: 40px;
-  height: 40px;
+.feature__object {
+  width: 136px;
+  height: 136px;
   margin-bottom: var(--space-md);
-  color: var(--color-text);
+}
+
+.feature__body {
+  max-width: 30ch;
 }
 
 .feature__title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   margin-bottom: 4px;
 }
@@ -741,12 +806,20 @@ section {
   align-items: flex-start;
 }
 
-.privacy__point-icon {
-  width: 22px;
-  height: 22px;
+.privacy__point {
+  align-items: center;
+}
+
+.privacy__point-object {
+  width: 56px;
+  height: 56px;
   flex-shrink: 0;
-  color: var(--color-text);
-  margin-top: 2px;
+}
+
+.privacy__cat {
+  width: clamp(150px, 16vw, 200px);
+  height: auto;
+  margin: calc(clamp(150px, 16vw, 200px) * -0.1) 0 var(--space-sm) calc(clamp(150px, 16vw, 200px) * -0.12);
 }
 
 .privacy__point-title {
@@ -787,10 +860,9 @@ section {
   text-align: center;
 }
 
-.final-cta__mascot {
-  width: 120px;
-  margin: 0 auto var(--space-lg);
-  opacity: 0.92;
+.final-cta__cat {
+  width: clamp(180px, 20vw, 240px);
+  margin: 0 auto calc(clamp(180px, 20vw, 240px) * -0.06);
 }
 
 .final-cta__title {

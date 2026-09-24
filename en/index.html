@@ -24,7 +24,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css?v=2026-09-24">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -66,7 +66,8 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container hero__inner">
-        <h1><span data-gradient-shimmer data-gradient-preset="sunrise">Sorting your photos has never been this simple and&nbsp;fun!</span></h1>
+        <div class="hero__cat"><video class="hero__cat-loop paw-loop" src="/assets/video/paw-cat.mp4" poster="/assets/video/paw-cat.jpg" width="640" height="640" autoplay muted loop playsinline preload="metadata" disablepictureinpicture aria-hidden="true"></video></div>
+        <h1><span data-gradient-shimmer data-gradient-preset="silver">Sorting your photos has never been this simple and&nbsp;fun!</span></h1>
         <p class="hero__sub">Sorting your photos and videos becomes a little game: a few swipes a day, and your cat grows. Play with it and furnish its home your way.</p>
         <div class="hero__ctas">
           <a href="#" class="btn btn--primary" data-app-store-cta data-magnetic>Download on the App Store</a>
@@ -83,12 +84,12 @@
           </div>
           <div class="phone phone--main">
             <div class="phone__screen">
-              <img src="/assets/img/app/en/shot-companion-room.webp" alt="The Companion tab: a pixel-art living room where a small black cat sits on the parquet, with its name, age and mood, and buttons for quests, games, chests, the shop and options" width="640" height="1387">
+              <img src="/assets/img/app/en/shot-home.webp" alt="The app's home screen: the 3D cat with its phone, today's actions and quests, the daily chests and the sorting tally" width="640" height="1387">
             </div>
           </div>
           <div class="phone phone--secondary phone--right" aria-hidden="true">
             <div class="phone__screen">
-              <img src="/assets/img/app/en/shot-kibble.webp" alt="" width="640" height="1387">
+              <img src="/assets/img/app/en/shot-companion-room.webp" alt="" width="640" height="1387">
             </div>
           </div>
         </div>
@@ -104,21 +105,25 @@
         </div>
         <div class="steps">
           <div class="step reveal">
+            <img class="step__object" src="/assets/img/paw/photos.webp" alt="" width="96" height="96" loading="lazy">
             <div class="step__index">01</div>
             <div class="step__title">Pick what to clean</div>
             <div class="step__body">All your photos, the oldest ones, screenshots, duplicates, your videos…</div>
           </div>
           <div class="step reveal">
+            <img class="step__object" src="/assets/img/paw/check.webp" alt="" width="96" height="96" loading="lazy">
             <div class="step__index">02</div>
             <div class="step__title">Swipe</div>
             <div class="step__body">Right to keep, left to delete, up to favorite. Nothing is deleted until you confirm.</div>
           </div>
           <div class="step reveal">
+            <img class="step__object" src="/assets/img/paw/paw.webp" alt="" width="96" height="96" loading="lazy">
             <div class="step__index">03</div>
             <div class="step__title">Your companion grows</div>
             <div class="step__body">Every day you sort, it gains 1&nbsp;day. It evolves at 7&nbsp;days, 15&nbsp;days, 30&nbsp;days…</div>
           </div>
           <div class="step reveal">
+            <img class="step__object" src="/assets/img/paw/clock.webp" alt="" width="96" height="96" loading="lazy">
             <div class="step__index">04</div>
             <div class="step__title">Come back tomorrow</div>
             <div class="step__body">New quests, games and a chest are waiting for you every day.</div>
@@ -188,8 +193,8 @@
 
         <div class="container shop">
           <div class="shop__head">
-            <h3 class="shop__count"><span class="shop__number">644</span> items in the shop</h3>
-            <p class="warm-text">Furniture, plants, lamps, toys for your cat and everything for the kitchen and the bedroom: 497 pieces to place, plus 147 walls and floors. Small pieces cost common crocks; the showpieces also ask for rarer ones.</p>
+            <h3 class="shop__count"><span class="shop__number">641</span> items in the shop</h3>
+            <p class="warm-text">Furniture, plants, lamps, toys for your cat and everything for the kitchen and the bedroom: 497 pieces to place, plus 144 walls and floors. Small pieces cost common crocks; the showpieces also ask for rarer ones.</p>
             <ul class="crock-legend" aria-label="The four crock rarities">
               <li><img class="px" src="/assets/img/pixel/crock-common.png" alt="" width="42" height="41" loading="lazy">Common</li>
               <li><img class="px" src="/assets/img/pixel/crock-rare.png" alt="" width="38" height="38" loading="lazy">Rare</li>
@@ -383,17 +388,17 @@
         </div>
         <div class="features">
           <div class="feature reveal">
-            <svg class="feature__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M13 7 H27 A6 6 0 0 1 33 13 V27 A6 6 0 0 1 27 33 H13 A6 6 0 0 1 7 27 V13 A6 6 0 0 1 13 7 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="14" cy="15" r="2.1" stroke="currentColor" stroke-width="1.4"/><path d="M10 27 L16 20 L20.5 24.5 L25 18.5 L30 25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <img class="feature__object" src="/assets/img/paw/photos.webp" alt="" width="192" height="192" loading="lazy">
             <div class="feature__title">Photo cleaning</div>
             <div class="feature__body">Go through your photos one swipe at a time.</div>
           </div>
           <div class="feature reveal">
-            <svg class="feature__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M13 7 H27 A6 6 0 0 1 33 13 V27 A6 6 0 0 1 27 33 H13 A6 6 0 0 1 7 27 V13 A6 6 0 0 1 13 7 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M17 14.5 L26 20 L17 25.5 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <img class="feature__object" src="/assets/img/paw/film.webp" alt="" width="192" height="192" loading="lazy">
             <div class="feature__title">Video cleaning</div>
             <div class="feature__body">Videos play as you sort, with a scrubber to skim through them.</div>
           </div>
           <div class="feature reveal">
-            <svg class="feature__icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M15 6 H26 A5 5 0 0 1 31 11 V22 A5 5 0 0 1 26 27 H15 A5 5 0 0 1 10 22 V11 A5 5 0 0 1 15 6 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" opacity="0.5"/><path d="M13 13 H24 A5 5 0 0 1 29 18 V29 A5 5 0 0 1 24 34 H13 A5 5 0 0 1 8 29 V18 A5 5 0 0 1 13 13 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <img class="feature__object" src="/assets/img/paw/duplicates.webp" alt="" width="192" height="192" loading="lazy">
             <div class="feature__title">Duplicates</div>
             <div class="feature__body">Compare near-identical shots and keep the best one.</div>
           </div>
@@ -405,6 +410,7 @@
     <section>
       <div class="container privacy">
         <div class="reveal">
+          <img class="privacy__cat" src="/assets/img/paw/cat-lock.webp" alt="" width="512" height="512" loading="lazy">
           <span class="eyebrow">Privacy</span>
           <h2 class="section-heading">Your photos stay yours.</h2>
           <p class="section-sub">Paw Cleaner is designed to keep your photo library private. Your photos are processed on your device and are not uploaded to our servers. Your companion, its home and your progress live on your iPhone too.</p>
@@ -412,21 +418,21 @@
         </div>
         <div class="privacy__points reveal">
           <div class="privacy__point">
-            <svg class="privacy__point-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <img class="privacy__point-object" src="/assets/img/paw/lock.webp" alt="" width="96" height="96" loading="lazy">
             <div>
               <div class="privacy__point-title">On-device processing</div>
               <div class="privacy__point-body">Your photos stay on your iPhone.</div>
             </div>
           </div>
           <div class="privacy__point">
-            <svg class="privacy__point-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 L20 7 V12 C20 16.5 16.5 20.3 12 21.5 C7.5 20.3 4 16.5 4 12 V7 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <img class="privacy__point-object" src="/assets/img/paw/photo.webp" alt="" width="96" height="96" loading="lazy">
             <div>
               <div class="privacy__point-title">No photo uploads</div>
               <div class="privacy__point-body">Your personal library isn't sent to us.</div>
             </div>
           </div>
           <div class="privacy__point">
-            <svg class="privacy__point-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20 C5 15.5 8 13 12 13 C16 13 19 15.5 19 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <img class="privacy__point-object" src="/assets/img/paw/settings.webp" alt="" width="96" height="96" loading="lazy">
             <div>
               <div class="privacy__point-title">You stay in control</div>
               <div class="privacy__point-body">You choose what Paw Cleaner can access.</div>
@@ -438,8 +444,9 @@
 
     <!-- Final CTA -->
     <section class="final-cta">
+      <!-- Hors du bloc qui apparaît en fondu : sa transformation isolerait le fondu « éclaircir » et montrerait le noir du clip. -->
+      <video class="final-cta__cat paw-loop" src="/assets/video/paw-cat-wave.mp4" poster="/assets/video/paw-cat-wave.jpg" width="640" height="640" autoplay muted loop playsinline preload="metadata" disablepictureinpicture aria-hidden="true"></video>
       <div class="container reveal">
-        <img src="/assets/img/mascot.webp" alt="" class="final-cta__mascot" aria-hidden="true">
         <h2 class="final-cta__title">Sort your photos.<br>Grow a little&nbsp;cat.</h2>
         <a href="#" class="btn btn--primary" data-app-store-cta data-magnetic>Download Paw Cleaner</a>
       </div>
@@ -482,9 +489,9 @@
   </footer>
 </div>
 
-<script src="/assets/js/gradient-shimmer.js"></script>
-<script src="/assets/js/cat-cursor.js"></script>
-<script src="/assets/js/main.js"></script>
-<script src="/assets/js/companion.js"></script>
+<script src="/assets/js/gradient-shimmer.js?v=2026-09-24"></script>
+<script src="/assets/js/cat-cursor.js?v=2026-09-24"></script>
+<script src="/assets/js/main.js?v=2026-09-24"></script>
+<script src="/assets/js/companion.js?v=2026-09-24"></script>
 </body>
 </html>
