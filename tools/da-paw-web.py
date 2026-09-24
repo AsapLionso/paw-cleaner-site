@@ -15,7 +15,7 @@ Outputs under assets/:
 - video/paw-*.mp4 + .jpg: the app's cat loops (Seedance raw clips, pure black background), cropped
   square, 640 px, the last 250 ms blended back into the first frame so the loop has no seam. They are
   shown with mix-blend-mode: screen: black disappears into the page, the grain shows through the shadows.
-- img/favicon-{16,32}.png: the app icon's cat without its black square; apple-touch-icon.png, icon-512.png: the icon.
+- img/favicon-{16,32}.png: the app icon with rounded corners; apple-touch-icon.png, icon-512.png: the square icon.
 Nothing is generated here: every pixel comes from the app or the founder's phone.
 """
 from __future__ import annotations
@@ -87,41 +87,28 @@ def loops(app: pathlib.Path) -> None:
         print(f'{name}.mp4 : {(out / f"{name}.mp4").stat().st_size // 1024} Ko')
 
 
-def _cat_cutout(icon: Image.Image) -> Image.Image:
-    """The icon's cat without its black square (founder, 2026-09-24: the browser tab shows it on its own).
-    The background is pure black (0), so the cat is the largest shape above it. The icon's framing cuts the body
-    at the bottom edge: that edge is closed before filling holes, so the black phone held between the paws stays
-    part of the cat, and the cut body fades out over the last 16 % instead of ending on a straight line. The
-    square is then tightened around the cat so it reads at 16 px."""
-    from scipy import ndimage
-
-    rgb = np.asarray(icon).astype(np.float64)
-    mask = rgb.max(axis=2) > 8
-    lab, n = ndimage.label(mask)
-    mask = lab == (np.argmax(ndimage.sum(mask, lab, range(1, n + 1))) + 1)
-    h, w = mask.shape
-    mask = ndimage.binary_fill_holes(np.vstack([mask, np.ones((1, w), bool)]))[:-1]
-    t = np.clip((np.arange(h) / (h - 1) - 0.84) / 0.16, 0, 1)
-    alpha = mask * (1 - t * t * (3 - 2 * t))[:, None]
-    ys, xs = np.where(alpha > 0.02)
-    side = int(max(xs.max() + 1 - xs.min(), ys.max() + 1 - ys.min()) * 1.02)
-    left = int(round((xs.min() + xs.max() + 1 - side) / 2))
-    top = ys.max() + 1 - side + int(side * 0.01)
-    cat = Image.new('RGBA', (side, side), (0, 0, 0, 0))
-    cat.paste(Image.fromarray(np.dstack([rgb, alpha * 255]).round().clip(0, 255).astype(np.uint8)), (-left, -top))
-    return cat
+def _rounded(icon: Image.Image, size: int) -> Image.Image:
+    """The icon on its black square with rounded corners, like the app on the home screen (founder, 2026-09-24:
+    the browser tab keeps the black background). Continuous corners, the iOS shape: a superellipse of exponent 5
+    filling the square, drawn at 8x and shrunk so its edge is smooth even at 16 px."""
+    big = size * 8
+    c = (np.arange(big) + 0.5) / big * 2 - 1
+    mask = (np.abs(c)[None, :] ** 5 + np.abs(c)[:, None] ** 5) <= 1
+    alpha = Image.fromarray((mask * 255).astype(np.uint8)).resize((size, size), Image.BOX)
+    out = icon.resize((size, size), Image.LANCZOS).convert('RGBA')
+    out.putalpha(alpha)
+    return out
 
 
 def icons(app: pathlib.Path) -> None:
     icon = Image.open(app / 'assets/icon.png').convert('RGB')
     img = SITE / 'assets/img'
-    cat = _cat_cutout(icon).convert('RGBa')           # premultiplied, so the edges shrink without a dark fringe
     for size, name in [(16, 'favicon-16.png'), (32, 'favicon-32.png')]:
-        cat.resize((size, size), Image.LANCZOS).convert('RGBA').save(img / name, optimize=True)
-    # The home-screen icon stays opaque: iOS fills any transparency with black anyway.
+        _rounded(icon, size).save(img / name, optimize=True)
+    # The home-screen icon stays square and opaque: iOS rounds it itself and fills any transparency with black.
     for size, name in [(180, 'apple-touch-icon.png'), (512, 'icon-512.png')]:
         icon.resize((size, size), Image.LANCZOS).save(img / name, optimize=True)
-    print('icônes → favicon-16/32 (chat détouré), apple-touch-icon, icon-512')
+    print('icônes → favicon-16/32 (fond noir, coins arrondis), apple-touch-icon, icon-512')
 
 
 if __name__ == '__main__':
