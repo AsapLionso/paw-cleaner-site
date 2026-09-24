@@ -85,8 +85,10 @@ cinq quêtes par jour payées en diamants ; un coffre = 50 à 150 crocks + un ra
 crock commun pour dix photos triées. **À revérifier à chaque build** qui touche ces règles.
 
 Choix à connaître :
-- **Seul le chat du jour 0 se montre**, partout : la frise, les captures et les images de partage. Les
-  cinq allures suivantes sont en silhouette (celles de l'app) ; leurs sprites ne sont pas publiés.
+- **Seul le chat du jour 0 se montre** dans la frise et les images de partage. Les cinq allures suivantes
+  sont en silhouette (celles de l'app) ; leurs sprites ne sont pas publiés. Exception voulue (fondateur,
+  2026-09-24) : la capture du salon, prise sur son iPhone, montre son chat à 30 jours.
+- **La page anglaise reprend les captures françaises** pour l'instant (fondateur, 2026-09-24).
 - **Aucun chat pixel sur fond noir** : tous les chats de l'app sont noirs, ils disparaîtraient.
 - **La boutique remplace les univers du dehors** : un nombre, les quatre raretés de crocks et 24 objets
   choisis (liste `SHOWCASE` du script), noms tirés des traductions de l'app.
