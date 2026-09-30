@@ -11,7 +11,8 @@
 Outputs under assets/:
 - img/app/{fr,en}/shot-{home,swipe,companion-room}.webp: 640 px wide, like the previous captures.
   The English page reuses the French captures until English ones are taken.
-- img/paw/*.webp: the app's matte 3D objects (icons 192 px, the padlock cat 512 px), alpha kept.
+- img/paw/*.webp: the app's matte 3D objects (icons 192 px, the padlock cat 512 px), alpha kept,
+  plus search-cat.webp: the cat looking for a photo on iCloud, the app's own loop, cropped square.
 - video/paw-*.mp4 + .jpg: the app's cat loops (Seedance raw clips, pure black background), cropped
   square, 640 px, the last 250 ms blended back into the first frame so the loop has no seam. They are
   shown with mix-blend-mode: screen: black disappears into the page, the grain shows through the shadows.
@@ -62,6 +63,30 @@ def objects(app: pathlib.Path) -> None:
     Image.open(app / 'assets/da-paw/spot-locked.png').convert('RGBA').save(
         out / 'cat-lock.webp', quality=90, alpha_quality=100, method=6)
     print(f'objets 3D → assets/img/paw/ ({len(ICONS)} pictos + chat au cadenas)')
+
+
+# La boucle du chat qui cherche la photo sur le Cloud (mission 129) : transparente, elle
+# reste une image animée (pas une vidéo comme les boucles sur fond noir). Carré mesuré sur
+# l'union des pixels opaques de la boucle entière, avec une marge.
+SEARCH_LOOP = ('photo-search-cat-loop.webp', 195, 23, 322)
+
+
+def search_loop(app: pathlib.Path) -> None:
+    name, x, y, side = SEARCH_LOOP
+    src = Image.open(app / 'assets/da-paw/animations' / name)
+    # Une image sur deux, à 192 px : la boucle pèse alors ~300 Ko au lieu de 1,6 Mo pour un
+    # picto de 136 px, et le mouvement (le chat qui inspecte) reste lisible.
+    frames, durations = [], []
+    for i in range(0, src.n_frames, 2):
+        src.seek(i)
+        f = src.convert('RGBA').crop((x, y, x + side, y + side)).resize((192, 192), Image.LANCZOS)
+        frames.append(f)
+        durations.append(2 * src.info.get('duration', 42))
+    out = SITE / 'assets/img/paw/search-cat.webp'
+    frames[0].save(out, save_all=True, append_images=frames[1:], duration=durations,
+                   loop=0, quality=58, method=4, allow_mixed=True)
+    print(f'chat qui cherche → assets/img/paw/search-cat.webp ({len(frames)} images, '
+          f'{out.stat().st_size // 1024} Ko)')
 
 
 def loops(app: pathlib.Path) -> None:
@@ -116,4 +141,5 @@ if __name__ == '__main__':
     captures(caps)
     objects(app)
     loops(app)
+    search_loop(app)
     icons(app)

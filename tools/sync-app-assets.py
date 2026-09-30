@@ -4,7 +4,9 @@
 Nothing on the page is redrawn for the web: every pixel sprite, shop item and
 screenshot comes from the Paw Cleaner app itself.
 
-  python3 tools/sync-app-assets.py <app-repo> <captures-fr> <captures-en>
+  python3 tools/sync-app-assets.py <app-repo> [<captures-fr> <captures-en>]
+
+Sans les deux dossiers de captures, tout est refait sauf les captures d'écran.
 
 - <app-repo>: the React Native app (branch chantier/da-piece-principale).
 - <captures-fr>, <captures-en>: iPhone 16 simulator captures (1179 × 2556), status bar
@@ -85,7 +87,19 @@ PAINTED_MAX_SIDE = {
     'icon-game': 112, 'icon-quests': 112, 'icon-shop': 112, 'icon-kitchen': 112, 'icon-outside': 112,
     'icon-evolution': 112, 'moon': 96, 'cloud-1': 160, 'kibble-1': 64, 'kibble-3': 64, 'card-back': 160,
     'bobber': 64, 'reed-1': 160, 'reed-2': 160, 'platform': 512,
+    # Les crocks « Éclats précieux » et les chats de l'Atelier enchanté (2026-09-25) : peints,
+    # jamais sur grille. Deux fois leur taille d'affichage (32 px pour un crock, 192 pour un chat).
+    'crock-common': 96, 'crock-rare': 96, 'crock-epic': 96, 'crock-legendary': 96,
+    'cat-1': 384, 'cat-2-shadow': 384, 'cat-3-shadow': 384, 'cat-4-shadow': 384,
+    'cat-5-shadow': 384, 'cat-6-shadow': 384,
 }
+
+# Les six allures du familier, dans l'ordre du jeu (jours 0, 7, 15, 30, 90, 180), telles que
+# tools/image-bench/atelier-cats.py les écrit dans assets/companion/atelier/<robe>/.
+CAT_STAGES = ('kitten', 'young', 'adult', 'bonded', 'guardian', 'legend')
+CAT_COAT = 'charcoal'   # la robe historique, celle de tous les anciens profils
+# Les six robes, dans l'ordre de l'écran de choix de l'app (src/companion/catVariants.ts).
+CAT_COATS = ('charcoal', 'cream', 'ginger', 'siamese', 'silver_tabby', 'tuxedo')
 
 # The shop items the page shows, in page order: cat things first, then a room, a kitchen,
 # pieces of every rarity. Painted items are capped at 2× their largest tile size (96 px).
@@ -132,13 +146,33 @@ def shop_catalogue(app: pathlib.Path) -> tuple[list[dict], dict[str, str]]:
     return listed, sprites
 
 
+WARM_INK = (36, 57, 44)     # --warm-ink du site
+
+
+def silhouette(src: pathlib.Path, dst: pathlib.Path, max_side: int) -> tuple[str, tuple[int, int]]:
+    """La forme seule, remplie à plat : on ne garde que l'alpha du fichier de l'app."""
+    alpha = Image.open(src).convert('RGBA').getchannel('A')
+    if max(alpha.size) > max_side:
+        r = max_side / max(alpha.size)
+        alpha = alpha.resize((max(1, round(alpha.width * r)), max(1, round(alpha.height * r))), Image.LANCZOS)
+    im = Image.new('RGBA', alpha.size, WARM_INK + (0,))
+    im.putalpha(alpha)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    im.save(dst, optimize=True)
+    return f'{dst.relative_to(SITE)}  {im.size} silhouette', im.size
+
 def main() -> None:
-    if len(sys.argv) != 4:
+    if len(sys.argv) not in (2, 4):
         raise SystemExit(__doc__)
     app = pathlib.Path(sys.argv[1]).resolve()
-    captures = {'fr': pathlib.Path(sys.argv[2]).resolve(), 'en': pathlib.Path(sys.argv[3]).resolve()}
+    # Sans dossiers de captures : tout sauf les captures d'écran (sprites, boutique, police).
+    # Les captures demandent un appareil ; les sprites, non.
+    captures = (
+        {'fr': pathlib.Path(sys.argv[2]).resolve(), 'en': pathlib.Path(sys.argv[3]).resolve()}
+        if len(sys.argv) == 4 else {}
+    )
     warm = app / 'assets/companion/room-warm'
-    sprites = app / 'assets/companion/sprites'
+    atelier = app / 'assets/companion/atelier' / CAT_COAT
     out_img = SITE / 'assets/img'
     report: list[str] = []
 
@@ -154,21 +188,36 @@ def main() -> None:
             im = im.resize((640, round(im.height * 640 / im.width)), Image.LANCZOS)
             report.append(webp(im, out_img / 'app' / lang / f'{name}.webp'))
 
-    # ── The cat: the first look and its blink; silhouettes for the five others ──
-    report.append(sprite(sprites / 'cat_stage_1.png', out_img / 'pixel' / 'cat-1.png')[0])
-    report.append(sprite(sprites / 'cat_stage_1_blink.png', out_img / 'pixel' / 'cat-1-blink.png')[0])
-    for n in range(2, 7):
-        report.append(sprite(sprites / f'cat_stage_{n}_shadow.png', out_img / 'pixel' / f'cat-{n}-shadow.png')[0])
+    # ── The cat (Atelier enchanté, 2026-09-25): the first look, then silhouettes for the five
+    # others (founder: never spoil a later look). Painted art, no blink frame exists any more. ──
+    # Jamais recadré : les six allures partagent un canevas de 576 px, pattes à la même hauteur —
+    # le recadrer casserait l'échelle et l'alignement de la frise.
+    report.append(sprite(atelier / f'{CAT_STAGES[0]}-normal.png', out_img / 'pixel' / 'cat-1.png',
+                         PAINTED_MAX_SIDE['cat-1'])[0])
+    for n, stage in enumerate(CAT_STAGES[1:], start=2):
+        # La silhouette de l'app ne porte QUE sa forme : son alpha est exact, mais ses pixels sont
+        # ceux de la planche (une trame à deux tons), que l'app recouvre d'une teinte. Le web n'en
+        # a pas : on remplit la forme à plat, à l'encre du monde chaud (--warm-ink).
+        report.append(silhouette(atelier / f'{stage}-silhouette.png', out_img / 'pixel' / f'cat-{n}-shadow.png',
+                                 PAINTED_MAX_SIDE[f'cat-{n}-shadow'])[0])
+
+    # ── Les six robes, à l'allure du jour 0 seulement (jamais une allure plus tardive) ──
+    for coat in CAT_COATS:
+        report.append(sprite(app / 'assets/companion/atelier' / coat / f'{CAT_STAGES[0]}-normal.png',
+                             out_img / 'pixel' / f'coat-{coat.replace("_", "-")}.png',
+                             PAINTED_MAX_SIDE['cat-1'])[0])
+
+    # ── The crocks « Éclats précieux » (2026-09-25): one folder of their own in the app ──
+    for rarity in ('common', 'rare', 'epic', 'legendary'):
+        report.append(sprite(app / 'assets/companion/crocks' / f'{rarity}.png',
+                             out_img / 'pixel' / f'crock-{rarity}.png',
+                             PAINTED_MAX_SIDE[f'crock-{rarity}'], trim=True)[0])
 
     # ── Warm UI sprites: chests, crocks, diamond, room icons, game pieces ──
     for name, file in {
         'chest-closed': 'warm_chest_closed.png',
         'chest-ajar': 'warm_chest_ajar.png',
         'chest-open': 'warm_chest_open.png',
-        'crock-common': 'warm_crock_common.png',
-        'crock-rare': 'warm_crock_rare.png',
-        'crock-epic': 'warm_crock_epic.png',
-        'crock-legendary': 'warm_crock_legendary.png',
         'diamond': 'warm_icon_diamond.png',
         'icon-dice': 'warm_icon_dice.png',
         'icon-fishing': 'warm_icon_game_fishing.png',
@@ -179,14 +228,6 @@ def main() -> None:
         'icon-kitchen': 'warm_icon_kitchen.png',
         'icon-outside': 'warm_icon_outside.png',
         'icon-evolution': 'warm_icon_evolution.png',
-        'moon': 'warm_minigame_moon.png',
-        'cloud-1': 'warm_minigame_cloud_1.png',
-        'cloud-3': 'warm_minigame_cloud_3.png',
-        'kibble-1': 'warm_minigame_kibble_1.png',
-        'kibble-3': 'warm_minigame_kibble_3.png',
-        'bomb': 'warm_minigame_bomb.png',
-        'coin': 'warm_icon_crocks.png',
-        'platform': 'warm_minigame_platform.png',
         'card-back': 'warm_memory_card_back.png',
         'snow-globe': 'warm_decor_snow_globe.png',
         'bobber': 'warm_fishing_bobber.png',
@@ -197,9 +238,23 @@ def main() -> None:
     }.items():
         report.append(sprite(warm / file, out_img / 'pixel' / f'{name}.png', PAINTED_MAX_SIDE.get(name))[0])
 
+    # ── Croquettes : le monde du JOUR 0 (le jardin), celui que voit un nouveau joueur.
+    # Depuis les missions 123-124, le jeu a six mondes et fait tomber les crocks Éclats
+    # précieux : l'ancien ciel sans étoiles, sa lune, ses nuages et ses croquettes n'existent
+    # plus dans l'app. Le décor est cadré sur sa moitié basse (la maison et les fleurs) ;
+    # la plateforme est la bande pleine de la planche (platformTop/platformHeight du code). ──
+    garden = Image.open(app / 'assets/minigame/evolutions/j0-jardin-background.png').convert('RGB')
+    report.append(webp(garden.crop((0, garden.height - 470, garden.width, garden.height)),
+                       out_img / 'pixel' / 'scene-garden.webp', 82))
+    plank = Image.open(app / 'assets/minigame/evolutions/j0-jardin-platform.png').convert('RGBA')
+    plank = plank.crop((0, 228, plank.width, 228 + 120))
+    plank = plank.resize((640, round(plank.height * 640 / plank.width)), Image.LANCZOS)
+    plank.save(out_img / 'pixel' / 'platform.png', optimize=True)
+    report.append(f'assets/img/pixel/platform.png  {plank.size} plateforme du jardin')
+    report.append(sprite(app / 'assets/minigame/evolutions/drop-bomb.png',
+                         out_img / 'pixel' / 'bomb.png', 128, trim=True)[0])
+
     # ── Painted scene backgrounds (not on a grid): cropped to what the cards show ──
-    sky = Image.open(warm / 'warm_minigame_sky.png').convert('RGB')
-    report.append(webp(sky.crop((0, 0, 768, 512)), out_img / 'pixel' / 'scene-sky.webp', 80))
     report.append(webp(Image.open(warm / 'warm_game_fishing_bg.png').convert('RGB'), out_img / 'pixel' / 'scene-lake.webp', 80))
     floor = Image.open(warm / 'warm_floor_band.png').convert('RGB')
     report.append(webp(floor, out_img / 'pixel' / 'floor-band.webp', 85))
