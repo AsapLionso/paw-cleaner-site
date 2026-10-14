@@ -907,6 +907,38 @@ section {
 /* Les marches de pixels entre les deux mondes : une tuile de 128 × 40 px
    (pas de 8 px, un horizon de collines) répétée, jamais étirée — les
    marches restent carrées. */
+/* La mascotte de la barre d'onglets (app, mission 136) : elle s'assoit sur la lisiere de
+   pixels, la ou le monde sombre passe au monde du familier - comme elle s'assoit sur la
+   barre d'onglets dans l'app. */
+.world-mascot {
+  position: relative;
+  z-index: 2;
+  height: 0;
+}
+
+.world-mascot__cat {
+  position: absolute;
+  bottom: -10px;
+  left: 9%;
+  width: 150px;
+  height: auto;
+}
+
+@media (max-width: 720px) {
+  .world-mascot__cat {
+    width: 104px;
+    left: 6%;
+    bottom: -6px;
+  }
+
+  /* Sur telephone les etapes occupent toute la largeur : on leur laisse la place de
+     s'arreter avant le chat, sinon il s'assoit sur le texte de la derniere. */
+  #comment-ca-marche,
+  #how-it-works {
+    padding-bottom: 104px;
+  }
+}
+
 .pixel-edge {
   position: relative;
   z-index: 1;

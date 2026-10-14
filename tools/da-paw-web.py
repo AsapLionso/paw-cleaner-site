@@ -69,6 +69,9 @@ def objects(app: pathlib.Path) -> None:
 # reste une image animée (pas une vidéo comme les boucles sur fond noir). Carré mesuré sur
 # l'union des pixels opaques de la boucle entière, avec une marge.
 SEARCH_LOOP = ('photo-search-cat-loop.webp', 195, 23, 322)
+# La mascotte assise de la barre d'onglets (mission 136) : cadrée sur son corps et son ombre
+# (boîte 214-427 × 93-318, sol à 318, ombre jusqu'à 321 — mascot-tabbar.qa.json), avec une marge.
+MASCOT_LOOP = ('mascot-sit-loop.webp', 'mascot-sit.webp', 202, 81, 247, 247)
 
 
 def search_loop(app: pathlib.Path) -> None:
@@ -86,6 +89,22 @@ def search_loop(app: pathlib.Path) -> None:
     frames[0].save(out, save_all=True, append_images=frames[1:], duration=durations,
                    loop=0, quality=58, method=4, allow_mixed=True)
     print(f'chat qui cherche → assets/img/paw/search-cat.webp ({len(frames)} images, '
+          f'{out.stat().st_size // 1024} Ko)')
+
+
+def mascot_loop(app: pathlib.Path) -> None:
+    name, out_name, x, y, w, h = MASCOT_LOOP
+    src = Image.open(app / 'assets/da-paw/animations' / name)
+    frames, durations = [], []
+    for i in range(0, src.n_frames, 2):
+        src.seek(i)
+        f = src.convert('RGBA').crop((x, y, x + w, y + h)).resize((224, 224), Image.LANCZOS)
+        frames.append(f)
+        durations.append(2 * src.info.get('duration', 42))
+    out = SITE / 'assets/img/paw' / out_name
+    frames[0].save(out, save_all=True, append_images=frames[1:], duration=durations,
+                   loop=0, quality=58, method=4, allow_mixed=True)
+    print(f'mascotte assise → assets/img/paw/{out_name} ({len(frames)} images, '
           f'{out.stat().st_size // 1024} Ko)')
 
 
@@ -142,4 +161,5 @@ if __name__ == '__main__':
     objects(app)
     loops(app)
     search_loop(app)
+    mascot_loop(app)
     icons(app)

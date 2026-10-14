@@ -104,7 +104,10 @@ Choix à connaître :
   JOUR 7 (le bassin) — le lac d'origine et ses roseaux ne sont plus dans l'app.
 - **La boutique remplace les univers du dehors** : un nombre, les quatre raretés de crocks et 24 objets
   choisis (liste `SHOWCASE` du script), noms tirés des traductions de l'app.
-- **Fonctions** : photos, vidéos, doublons, photos sur iCloud (la boucle du chat à la loupe, `search-cat.webp`). Favori et zoom restent dans la section du geste.
+- **Fonctions** : photos, vidéos, doublons, photos sur iCloud (la boucle du chat à la loupe, `search-cat.webp`).
+- **La mascotte de la barre d'onglets** (app, mission 136) s'assoit sur la lisière de pixels entre les deux
+  mondes (`mascot-sit.webp`, une image sur deux, 224 px) — l'écho de sa place dans l'app, au bas de Photos
+  et Vidéos. Sur téléphone, les étapes gagnent 104 px de marge basse pour lui laisser la place. Favori et zoom restent dans la section du geste.
 - **La photo de la capture du tri** est celle déjà publiée sur le site (réinjectée dans le simulateur) ; les
   photos d'exemple d'Apple du simulateur ne sont pas utilisées.
 - **Pas de mention des publicités ni des achats** : désactivés en build 9, prévus plus tard.
