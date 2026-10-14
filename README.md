@@ -76,11 +76,12 @@ boutique, les jeux, les quêtes et le coffre), puis le geste, les fonctions et l
 l'app (branche `chantier/da-piece-principale`) par `tools/sync-app-assets.py` ; les sprites sur grille exacte
 sont ramenés à leur résolution d'art et agrandis en `image-rendering: pixelated`.
 
-**Chaque affirmation est vérifiée dans le code de l'app** (relevé du 2026-09-30) : le chat arrive le premier
+**Chaque affirmation est vérifiée dans le code de l'app** (relevé du 2026-10-14) : le chat arrive le premier
 jour où l'on atteint 50 actions ; il gagne un jour par jour de tri (ouvrir l'app ne compte pas) ; nouvelles
 allures aux jours 7, 15, 30, 90 et 180 ; Croquettes et Memory dès le jour 0, pêche et cuisine au jour 7,
-dehors au jour 30 ; **640 articles proposés en boutique** (497 objets à poser, 143 murs et sols ; le script
-les recompte) ; Croquettes 42 s une fois par jour ; Memory six paliers ; pêche cinq appâts par jour ; jusqu'à
+dehors au jour 90 (déplacé du jour 30 le 2026-10-05) ; **640 articles proposés en boutique** (497 objets à
+poser, 143 murs et sols ; le script les recompte — les 492 articles de la mission 141 sont au catalogue mais
+SANS PRIX, donc hors vitrine et hors du compte tant que le fondateur ne les a pas tarifés) ; Croquettes 42 s une fois par jour ; Memory six paliers ; pêche cinq appâts par jour ; jusqu'à
 cinq quêtes par jour payées en diamants ; un coffre = 50 à 150 crocks + un rare, épique ou légendaire ; un
 crock commun pour dix photos triées. **À revérifier à chaque build** qui touche ces règles.
 
@@ -92,10 +93,15 @@ Choix à connaître :
 - **Aucun chat pixel sur fond noir** : tous les chats de l'app sont noirs, ils disparaîtraient.
 - **Les six robes** (2026-09-30) se montrent toutes, mais à l'allure du jour 0 seulement — le choix
   qu'on fait après le prénom n'est pas un spoil, une allure plus tardive le serait.
-- **L'art de l'app n'est plus du pixel art partout** (missions 122 à 131) : les chats de l'Atelier
-  enchanté, les crocks « Éclats précieux », le diamant, le coffre, le mobilier frontal et le monde du
-  jour 0 de Croquettes sont peints. Ils sont servis SANS `image-rendering: pixelated` et sans hauteur
-  imposée ; les silhouettes sont remplies à plat (leur fichier ne porte que la forme).
+- **Deux matières cohabitent, et le script tranche tout seul** : il mesure la grille de chaque fichier
+  (`exact_grid`). Grille > 1 = pixel art, servi à sa résolution d'art avec `class="px"`
+  (`image-rendering: pixelated`) — depuis la mission 137 (2026-10) les crocks, le diamant, le coffre et
+  les icônes du Familier sont revenus à cette matière, la légendaire étant désormais ROUGE. Grille = 1 =
+  peint (chats de l'Atelier, mobilier frontal, mondes des jeux), servi sans `px` et sans hauteur imposée.
+  Les silhouettes sont remplies à plat (leur fichier ne porte que la forme).
+- **Les jeux se jouent dans les mondes des évolutions** (missions 134-135) : la carte Croquettes montre le
+  monde du JOUR 0 (le jardin), le Memory son ciel et le dos de carte du jour 0, la Pêche le monde du
+  JOUR 7 (le bassin) — le lac d'origine et ses roseaux ne sont plus dans l'app.
 - **La boutique remplace les univers du dehors** : un nombre, les quatre raretés de crocks et 24 objets
   choisis (liste `SHOWCASE` du script), noms tirés des traductions de l'app.
 - **Fonctions** : photos, vidéos, doublons, photos sur iCloud (la boucle du chat à la loupe, `search-cat.webp`). Favori et zoom restent dans la section du geste.

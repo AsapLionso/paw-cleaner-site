@@ -1494,8 +1494,12 @@ section {
 .scene > span {
   position: absolute;
   display: block;
-  /* les sprites portent leur taille réelle en attribut : sans ça, la hauteur du
-     fichier écrase la largeur posée ici et l'objet est étiré. */
+}
+
+/* Les sprites portent leur taille réelle en attribut : sans ça, la hauteur du fichier
+   écrase la largeur posée ici et l'objet est étiré. Les <span> (bouchon, pièce) gardent
+   la hauteur que leur règle leur donne — la leur mettre en `auto` les faisait disparaître. */
+.scene > img {
   height: auto;
 }
 

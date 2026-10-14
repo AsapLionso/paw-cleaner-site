@@ -128,7 +128,11 @@ def shop_catalogue(app: pathlib.Path) -> tuple[list[dict], dict[str, str]]:
     ]
     unlisted_block = shop[shop.index('export const UNLISTED_ITEMS'):]
     unlisted = set(re.findall(r"'(\w+)'", unlisted_block[:unlisted_block.index(']);')]))
-    listed = [item for item in items if item['id'] not in unlisted]
+    # Mission 141 (2026-10-14) : 492 articles sont dans le catalogue mais SANS PRIX, donc hors
+    # vitrine tant que le fondateur n'a pas tranché. Les compter serait annoncer ce qu'on ne vend pas.
+    pending_block = shop[shop.index('export const PENDING_PRICING_ITEMS'):]
+    pending = set(re.findall(r"'(\w+)'", pending_block[:pending_block.index(']);')]))
+    listed = [item for item in items if item['id'] not in unlisted and item['id'] not in pending]
 
     keys = dict(re.findall(r"^\s+(\w+): 'companion\.(item\w+)',", (app / 'src/components/ShopPanel.tsx').read_text(), re.M))
 
@@ -228,13 +232,10 @@ def main() -> None:
         'icon-kitchen': 'warm_icon_kitchen.png',
         'icon-outside': 'warm_icon_outside.png',
         'icon-evolution': 'warm_icon_evolution.png',
-        'card-back': 'warm_memory_card_back.png',
         'snow-globe': 'warm_decor_snow_globe.png',
         'bobber': 'warm_fishing_bobber.png',
         'fish-1': 'warm_fishing_fish_1.png',
         'fish-2': 'warm_fishing_fish_2.png',
-        'reed-1': 'warm_fishing_reed_1.png',
-        'reed-2': 'warm_fishing_reed_2.png',
     }.items():
         report.append(sprite(warm / file, out_img / 'pixel' / f'{name}.png', PAINTED_MAX_SIDE.get(name))[0])
 
@@ -255,9 +256,13 @@ def main() -> None:
                          out_img / 'pixel' / 'bomb.png', 128, trim=True)[0])
 
     # ── Painted scene backgrounds (not on a grid): cropped to what the cards show ──
-    report.append(webp(Image.open(warm / 'warm_game_fishing_bg.png').convert('RGB'), out_img / 'pixel' / 'scene-lake.webp', 80))
-    floor = Image.open(warm / 'warm_floor_band.png').convert('RGB')
-    report.append(webp(floor, out_img / 'pixel' / 'floor-band.webp', 85))
+    # ── Memory : le dos de carte et le ciel du monde du JOUR 0 (mission 134) ──
+    report.append(sprite(app / 'assets/memory/backs/kitten.png', out_img / 'pixel' / 'card-back.png', 192)[0])
+    report.append(webp(garden.crop((0, 0, garden.width, 620)), out_img / 'pixel' / 'scene-memory.webp', 82))
+
+    # ── Pêche : le monde du JOUR 7 (mission 135), le premier que l'on voit, cadré sur le bassin ──
+    pond = Image.open(app / 'assets/fishing/worlds/young.png').convert('RGB')
+    report.append(webp(pond.crop((0, 500, pond.width, 500 + 620)), out_img / 'pixel' / 'scene-lake.webp', 82))
 
     # ── The shop: counts from the code, and the items the page shows ────
     listed, _ = shop_catalogue(app)
