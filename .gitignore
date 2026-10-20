@@ -4,3 +4,9 @@
 # encore intégré au site, pas de raison de le committer pour l'instant.
 react/node_modules/
 react/dist/
+
+# Secrets et variables d'environnement : jamais dans un dépôt, encore moins
+# public (règle du 2026-10-17). Seul un gabarit .env.example peut être suivi.
+.env*
+!.env.example
+node_modules/
